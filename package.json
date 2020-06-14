@@ -19,10 +19,33 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix --max-warnings=0",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|md|html)\"",
+    "scss-lint": "sass-lint 'src/**/*.scss' -v -f table --max-warnings 0",
+    "scss-lint:fix": "sass-lint-auto-fix 'src/**/*.scss' -d -h -c .sass-lint-auto-fix.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "npm run eslint:fix",
+      "prettier --write \"**/*.+(js|jsx)\""
+    ],
+    "*.+(json|yml|yaml|md)": [
+      "prettier --write \"**/*.+(json|yml|yaml|md)\""
+    ],
+    "*.+(css|scss)": [
+      "npm run scss-lint:fix",
+      "npm run scss-lint"
+    ]
   },
   "devDependencies": {
     "eslint": "^7.2.0",
