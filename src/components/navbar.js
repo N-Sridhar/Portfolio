@@ -7,7 +7,7 @@ function navbar() {
   return (
     <div className="Navbar">
       <div className="Brand opacityIn" style={{animationDelay: '.5s'}}>
-        <img src={Logo} alt="VGS"></img>
+        <img src={Logo} alt="Sridhar 😎| VGS"></img>
         {/* <span role="img" aria-label="shirt">
           Y-Clothing 👕
         </span> */}
