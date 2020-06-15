@@ -1,0 +1,130 @@
+// -- Color Variables --
+$black: #000;
+$white: #fff;
+$blue: #00f;
+$blue-light-opaque: #eff7ff;
+$react-grey: #282c34;
+
+// @import 'reset';
+
+@mixin clearfix {
+  clear: both;
+  content: '';
+  display: both;
+}
+
+.App {
+  background-color: $react-grey !important;
+  min-height: 100vh;
+}
+
+.container-fluid {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.Navbar {
+  .Brand {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 20px 10px 0 0;
+    text-align: center;
+
+    img {
+      width: 95px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 75px;
+      }
+    }
+  }
+
+  .Items {
+    ul {
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+    }
+
+    li {
+      float: left;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      width: (100% / 5);
+
+      div {
+        border-radius: 10px;
+        margin: 20px;
+        padding: 10px 30px;
+        text-align: center;
+        // text-transform: uppercase;
+
+        &:hover {
+          background: $black;
+          color: $white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+// ANIMATIONS
+.opacityIn {
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-name: opacityIn;
+}
+
+.fadeInUp {
+  animation-duration: .45s;
+  animation-fill-mode: both;
+  animation-name: fadeInUp;
+}
+
+@keyframes opacityIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// SPINNER.
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
