@@ -334,10 +334,10 @@ h6 {
     align-items: center;
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
     margin-left: 3rem;
     margin-right: 3rem;
-    margin-top: 3rem;
+    margin-top: 5rem;
     text-align: center;
 
     & > a {
@@ -348,7 +348,7 @@ h6 {
   }
 }
 
-// RESPONSIVE FOR MOBILE SCREEN.
+// RESPONSIVE FOR MOBILE SCREEN'S.
 @media screen and (max-width: 768px) {
   .Navbar {
     .Brand {
@@ -406,10 +406,33 @@ h6 {
       grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
       margin-left: 1rem;
       margin-right: 1rem;
+      margin-top: 3rem;
 
       a {
         img {
           width: 45px;
+        }
+      }
+    }
+  }
+}
+
+// RESPONSIVE FOR TABLET SCREEN'S.
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Contact {
+    .Text {
+      height: 5rem;
+    }
+
+    .Icons {
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      margin-left: 1rem;
+      margin-right: 1rem;
+      margin-top: 4.5rem;
+
+      a {
+        img {
+          width: 48px;
         }
       }
     }
@@ -455,12 +478,6 @@ h6 {
   .Contact {
     background: $gray-hover !important;
   }
-
-  // .table {
-  //   .cell {
-  //     background: #1e1e30 !important;
-  //   }
-  // }
 }
 
 // ANIMATIONS
