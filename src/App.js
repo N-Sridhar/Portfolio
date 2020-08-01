@@ -12,7 +12,7 @@ import {
 const Home = lazy(() => import('./components/Home'));
 const About = lazy(() => import('./components/About'));
 const Experience = lazy(() => import('./components/Experience'));
-const Hobby = lazy(() => import('./components/Hobby'));
+const Hobby = lazy(() => import('./components/Also_i_can'));
 const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
@@ -62,7 +62,7 @@ function App() {
                       <Route
                         exact
                         path={screen.link}
-                        render={({match}) => <screen.view {...{darkMode}} />}
+                        render={({match}) => <screen.view />}
                         key={index}
                       />
                     );

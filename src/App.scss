@@ -1,29 +1,22 @@
-// -- Color Variables --
+// Base bg & font
 $white: #fff;
-
 $black: #000;
-
 $react-grey: #282c34;
-$gray: #6c757d;
-$gray-mid: #6c757d99;
-$gray-dark: #343a40;
-$gray-opaque: #f1f1f1;
+
+// .Navbar .Expand
 $gray-light: #6c757d10;
 $gray-light-opaque: #f6f6f7;
 $gray-hover: #6c757d20;
-$gray-hover-opaque: #edeeef;
-$gray-hover-darker-opaque: #f6f6f7;
+$pblue-light: #4c75f210;
 
-$blue: #00f;
+// .Home .home-left
 $blue-light-opaque: #eff7ff;
-
+$blue: #00f;
 $pink: #ff1f8f;
 
-$pblue: #4c75f2;
-$pblue-light: #4c75f210;
-$pblue-hover: #4c75f230;
-
-$orange-hover: #ff9800;
+// .Contact .Text
+// $orange-red: #ff4500;
+$salmon: #fa8072;
 
 $vgs-linear: linear-gradient(
   90deg,
@@ -33,6 +26,7 @@ $vgs-linear: linear-gradient(
 
 html {
   overflow-x: hidden;
+  scroll-snap-type: y mandatory;
   width: 100vw;
 }
 
@@ -43,7 +37,12 @@ body {
   padding: 0;
 }
 
+* {
+  margin: 0;
+}
+
 h1 {
+  // font-family: 'Lucida Console';
   font-family: 'archia';
   font-size: 24px !important;
   font-weight: 900;
@@ -91,10 +90,39 @@ h6 {
   // padding: 0;
 }
 
+// Mixins
+@mixin base-card($height) {
+  -moz-box-shadow: 0 0.1px 35px $black;
+  -webkit-appearance: none !important;
+  -webkit-box-shadow: 0 0.1px 35px $black;
+  background: $blue-light-opaque;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  height: $height;
+  justify-content: center;
+  margin-left: 4.5rem;
+  margin-right: 4.5rem;
+  z-index: 99;
+}
+
+@mixin base-card-mobile {
+  flex-wrap: wrap;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+}
+
 .App {
+  -ms-overflow-style: none; // Hide scrollbar for IE & Edge.
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  scrollbar-width: none; // Hide scrollbar for Firefox.
+
+  // Hide scrollbar for Chrome, Safari and Opera.
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .Navbar {
@@ -107,7 +135,6 @@ h6 {
     align-items: center;
     display: flex;
     flex-direction: column;
-    // margin-bottom: 5px;
     padding-top: 10px;
     text-align: center;
 
@@ -139,7 +166,6 @@ h6 {
 
       div {
         border-radius: 10px;
-        // color: $black;
         margin: 20px;
         padding: 10px 20px;
         text-align: center;
@@ -154,6 +180,8 @@ h6 {
         }
 
         span {
+          font-family: archia;
+
           &:hover {
             background: $black;
             border-radius: 5px;
@@ -171,7 +199,6 @@ h6 {
     color: $black;
     display: flex;
     flex-direction: column;
-    // font-family: 'Lucida Console';
     height: calc(100% - 4rem);
     overflow: auto;
     text-align: center;
@@ -250,40 +277,13 @@ h6 {
 
     h1 {
       span {
-        // display: inline-block;
-        // margin-right: 5px;
-        // position: relative;
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: $black;
         -webkit-text-stroke-width: 1px;
-        // font-size: 120px;
-        // left: 50%;
-        // justify-content: center;
-        letter-spacing: 0.55em;
-        position: absolute;
+        letter-spacing: 0.75em;
+        position: relative;
         text-shadow: 2px 2px $pink, 5px 5px $blue;
-        // top: 50%;
         transform: translate(-50%, -50%);
-        // background: linear-gradient(
-        //   to right,
-        //   $orange-hover 0%,
-        //   $orange-hover 5px,
-        //   transparent 5px
-        // );
-        // background-repeat: repeat-x;
-        // background-size: 100%;
-        // color: #000;
-        // padding-left: 05px;
-        // text-decoration: none;
-        // &:hover {
-        //   background: linear-gradient(
-        //     to right,
-        //     $orange-hover 0%,
-        //     $orange-hover 10px,
-        //     transparent
-        //   );
-        //   cursor: pointer;
-        // }
       }
     }
   }
@@ -299,22 +299,20 @@ h6 {
   }
 }
 
+.About {
+  @include base-card(35rem);
+}
+
+.Experience {
+  @include base-card(35rem);
+}
+
+.Also_i_can {
+  @include base-card(35rem);
+}
+
 .Contact {
-  -moz-box-shadow: 0 0.1px 35px $black;
-  -webkit-appearance: none !important;
-  -webkit-box-shadow: 0 0.1px 35px $black;
-  background: $blue-light-opaque;
-  border-radius: 10px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  // box-shadow: 0 5px 10px #888888;
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  height: 25rem;
-  justify-content: center;
-  margin-left: 4.5rem;
-  margin-right: 4.5rem;
-  z-index: 99;
+  @include base-card(28rem);
 
   .Text {
     align-items: center;
@@ -325,8 +323,53 @@ h6 {
     text-align: center;
     width: 100%;
 
+    h1 {
+      background: linear-gradient(
+        to right,
+        $salmon 0%,
+        $salmon 3px,
+        transparent 1px
+      );
+      background-repeat: repeat-x;
+      background-size: 100%;
+      color: $black;
+      padding-left: 5px;
+      text-decoration: none;
+
+      &:hover {
+        background: linear-gradient(
+          to right,
+          $salmon 0%,
+          $salmon 10px,
+          transparent
+        );
+        cursor: pointer;
+      }
+    }
+
     h3 {
+      background: linear-gradient(
+        to left,
+        $salmon 0%,
+        $salmon 3px,
+        transparent 1px
+      );
+      background-repeat: repeat-x;
+      background-size: 100%;
+      color: $black;
       margin-top: 0;
+      padding-right: 5px;
+      text-decoration: none;
+
+      &:hover {
+        background: linear-gradient(
+          to left,
+          $salmon 0%,
+          $salmon 10px,
+          transparent
+        );
+        cursor: pointer;
+      }
     }
   }
 
@@ -338,7 +381,7 @@ h6 {
     margin-left: 3rem;
     margin-right: 3rem;
     margin-top: 5rem;
-    text-align: center;
+    place-items: center;
 
     & > a {
       img {
@@ -376,11 +419,7 @@ h6 {
   }
 
   .Home {
-    flex-wrap: wrap;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding-top: 0.5rem;
-    width: auto;
+    @include base-card-mobile;
 
     .home-left,
     .home-right {
@@ -391,12 +430,20 @@ h6 {
     }
   }
 
+  .About {
+    @include base-card-mobile;
+  }
+
+  .Experience {
+    @include base-card-mobile;
+  }
+
+  .Also_i_can {
+    @include base-card-mobile;
+  }
+
   .Contact {
-    flex-wrap: wrap;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding-top: 0.5rem;
-    width: auto;
+    @include base-card-mobile;
 
     .Text {
       height: 5rem;
@@ -475,8 +522,25 @@ h6 {
     }
   }
 
+  .About {
+    background: $gray-hover !important;
+  }
+
+  .Experience {
+    background: $gray-hover !important;
+  }
+
+  .Also_i_can {
+    background: $gray-hover !important;
+  }
+
   .Contact {
     background: $gray-hover !important;
+
+    h1,
+    h3 {
+      color: $white;
+    }
   }
 }
 

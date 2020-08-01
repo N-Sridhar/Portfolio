@@ -21,7 +21,6 @@ function Home() {
           <span>SRIDHAR</span>
         </h1>
         <h2>Developer | Designer</h2>
-        {/* <h4>Wep-App</h4> */}
       </animated.div>
       <animated.div className="home-right" style={trail[1]}>
         <b>Home Right</b>

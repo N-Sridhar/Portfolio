@@ -14,7 +14,7 @@ import React from 'react';
 import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
 
-function Contact(darkMode) {
+function Contact() {
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,

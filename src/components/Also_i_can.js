@@ -1,7 +1,7 @@
 import React from 'react';
-import {useTrail, config, animated} from 'react-spring';
+import {animated, config, useTrail} from 'react-spring';
 
-function About() {
+function Also_i_can() {
   const [trail, set] = useTrail(1, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
@@ -9,12 +9,12 @@ function About() {
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   return (
-    <div className="About">
+    <div className="Also_i_can">
       <animated.div style={trail[0]}>
-        <h1>About</h1>
+        <h1>Also_i_can</h1>
       </animated.div>
     </div>
   );
 }
 
-export default About;
+export default Also_i_can;
