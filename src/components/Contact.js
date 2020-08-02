@@ -101,6 +101,7 @@ function Contact() {
       borderColor: '#29b2fe',
     },
   ];
+
   return (
     <div className="Contact">
       <animated.div className="Text" style={trail[0]}>
