@@ -22,7 +22,7 @@ const SLIDE_OUT_MOBILE = {
   zIndex: 999,
 };
 
-function Navbar({menuOptions, darkMode}) {
+function Navbar({menuOptions}) {
   const [expand, setExpand] = useState(false);
 
   const windowSize = useWindowSize();
@@ -50,34 +50,23 @@ function Navbar({menuOptions, darkMode}) {
       <MenuX {...{expand, setExpand}} />
 
       <animated.div className="Items">
-        <ul>
-          {menuOptions.map((option, i) => (
+        {menuOptions.map((option, i) => (
+          <animated.div
+            className="NavItems fadeInUp"
+            style={{animationDelay: `${option.navDelay}`}}
+            key={i}
+          >
             <Link to={option.link} key={i}>
-              <li>
-                <animated.div
-                  className="NavItems fadeInUp"
-                  style={{animationDelay: `${option.navDelay}`}}
-                >
-                  <span>{option.name}</span>
-                </animated.div>
-              </li>
+              <span>{option.name}</span>
             </Link>
-          ))}
-          <li>
-            <animated.div
-              className="NavItems fadeInUp"
-              style={{animationDelay: '.5s'}}
-            >
-              <SunMoon {...{darkMode}} />
-            </animated.div>
-          </li>
-        </ul>
+          </animated.div>
+        ))}
       </animated.div>
 
       {transitions.map(({item, key, props}) =>
         item ? (
           <animated.div key={key} style={props}>
-            <Expand {...{menuOptions, darkMode, setExpand, windowSize}} />
+            <Expand {...{menuOptions, setExpand, windowSize}} />
           </animated.div>
         ) : (
           <animated.div key={key} style={props}></animated.div>
@@ -87,10 +76,10 @@ function Navbar({menuOptions, darkMode}) {
   );
 }
 
-function Expand({menuOptions, darkMode, setExpand, windowSize}) {
+function Expand({menuOptions, setExpand}) {
   const expandElement = useRef(null);
   return (
-    <div className="Expand" ref={expandElement}>
+    <div className="Expand fadeInUp" ref={expandElement}>
       {menuOptions.map((option, i) => {
         return (
           <Link
@@ -104,11 +93,10 @@ function Expand({menuOptions, darkMode, setExpand, windowSize}) {
           </Link>
         );
       })}
-      <SunMoon {...{darkMode}} />
       <div className="Expand-bottom">
         <h5>
           <span role="img" aria-label="smile">
-            😎 Sridhar Nallasamy ✌🏻
+            ❗ SRIDHAR 🙋🏻‍♂️
           </span>
         </h5>
       </div>
@@ -127,23 +115,6 @@ const MenuX = ({expand, setExpand}) => {
         <Icon.X onClick={() => setExpand(!expand)} />
       ) : (
         <Icon.Menu onClick={() => setExpand(!expand)} />
-      )}
-    </div>
-  );
-};
-
-const SunMoon = ({darkMode}) => {
-  return (
-    <div
-      className="SunMoon"
-      onClick={() => {
-        darkMode.toggle();
-      }}
-    >
-      {darkMode.value ? (
-        <Icon.Sun color="yellow" size="22px" />
-      ) : (
-        <Icon.Moon color="blue" size="22px" />
       )}
     </div>
   );

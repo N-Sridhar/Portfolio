@@ -1,7 +1,6 @@
 import React, {lazy, Suspense} from 'react';
 import './App.scss';
 import Navbar from './components/Navbar';
-import useDarkMode from 'use-dark-mode';
 import {
   BrowserRouter as Router,
   Route,
@@ -16,7 +15,6 @@ const Hobby = lazy(() => import('./components/Also_i_can'));
 const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
-  const darkMode = useDarkMode(true);
   const screens = [
     {name: 'Home', icon: 'Home', link: '/', view: Home, navDelay: '.1s'},
     {
@@ -52,7 +50,7 @@ function App() {
     <div className="App">
       <Suspense fallback={<div />}>
         <Router>
-          <Navbar menuOptions={screens} {...{darkMode}} />
+          <Navbar menuOptions={screens} />
           <Route
             render={({location}) => (
               <React.Fragment>

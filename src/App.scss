@@ -5,17 +5,15 @@ $react-grey: #282c34;
 
 // .Navbar .Expand
 $gray-light: #6c757d10;
-$gray-light-opaque: #f6f6f7;
 $gray-hover: #6c757d20;
 $pblue-light: #4c75f210;
+$dark-blue: #000a1f;
 
 // .Home .home-left
-$blue-light-opaque: #eff7ff;
 $blue: #00f;
-$pink: #ff1f8f;
 
 // .Contact .Text
-// $orange-red: #ff4500;
+$orange-red: #ff4500;
 $salmon: #fa8072;
 
 $vgs-linear: linear-gradient(
@@ -42,52 +40,39 @@ body {
 }
 
 h1 {
-  // font-family: 'Lucida Console';
   font-family: 'archia';
   font-size: 24px !important;
   font-weight: 900;
-  // margin: 0;
-  // padding: 0;
 }
 
 h2 {
   font-family: 'archia';
   font-size: 18px !important;
   font-weight: 600;
-  // margin: 0;
-  // padding: 0;
 }
 
 h3 {
   font-family: 'archia';
   font-size: 16px !important;
   font-weight: 400;
-  // margin: 0;
-  // padding: 0;
 }
 
 h4 {
   font-family: 'archia';
   font-size: 13px !important;
   font-weight: 900;
-  // margin: 0;
-  // padding: 0;
 }
 
 h5 {
   font-family: 'archia';
   font-size: 12px !important;
   font-weight: 900;
-  // margin: 0;
-  // padding: 0;
 }
 
 h6 {
   font-family: 'archia';
   font-size: 11px !important;
   font-weight: 600;
-  // margin: 0;
-  // padding: 0;
 }
 
 // Mixins
@@ -95,7 +80,7 @@ h6 {
   -moz-box-shadow: 0 0.1px 35px $black;
   -webkit-appearance: none !important;
   -webkit-box-shadow: 0 0.1px 35px $black;
-  background: $blue-light-opaque;
+  background: $gray-hover;
   border-radius: 10px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   height: $height;
@@ -114,6 +99,8 @@ h6 {
 
 .App {
   -ms-overflow-style: none; // Hide scrollbar for IE & Edge.
+  background: $react-grey !important;
+  color: $white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -152,54 +139,43 @@ h6 {
   }
 
   .Items {
-    ul {
-      margin: 0;
-      text-align: center;
-      width: auto;
-    }
+    margin: 0 50px;
 
-    li {
+    .NavItems {
+      border-radius: 10px;
       float: left;
-      list-style: none;
+      margin: 30px 0;
       text-align: center;
-      width: (100% / 6);
+      text-transform: uppercase;
+      width: (100% / 5);
 
-      div {
-        border-radius: 10px;
-        margin: 20px;
-        padding: 10px 20px;
-        text-align: center;
-        text-transform: uppercase;
+      // .SunMoon {
+      //   cursor: pointer;
+      //   margin: 0;
+      //   padding: 0;
+      //   text-align: left;
+      //   width: 0;
+      // }
 
-        .SunMoon {
-          cursor: pointer;
-          margin: 0;
-          padding: 0;
-          text-align: left;
-          width: 0;
-        }
+      span {
+        font-family: archia;
 
-        span {
-          font-family: archia;
-
-          &:hover {
-            background: $black;
-            border-radius: 5px;
-            color: $white;
-            cursor: pointer;
-            padding: 0.3rem 0.5rem;
-          }
+        &:hover {
+          background: $white;
+          border-radius: 5px;
+          color: $black;
+          padding: 0.3rem 0.5rem;
         }
       }
     }
   }
 
   .Expand {
-    background: $gray-light-opaque;
-    color: $black;
+    background: $dark-blue;
+    color: $white;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 4rem);
+    height: calc(100% - 9rem);
     overflow: auto;
     text-align: center;
     transform: none !important;
@@ -219,7 +195,6 @@ h6 {
       span {
         &.focused {
           background: $pblue-light;
-          // color: $pblue;
           padding: 0.25rem;
         }
       }
@@ -248,10 +223,9 @@ h6 {
   -moz-box-shadow: 0 0.1px 35px $black;
   -webkit-appearance: none !important;
   -webkit-box-shadow: 0 0.1px 35px $black;
-  background: $blue-light-opaque;
+  background: $gray-hover;
   border-radius: 10px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  // box-shadow: 0 5px 10px #888888;
   display: flex;
   flex-direction: row;
   // flex-wrap: wrap;
@@ -278,11 +252,11 @@ h6 {
     h1 {
       span {
         -webkit-text-fill-color: transparent;
-        -webkit-text-stroke-color: $black;
+        -webkit-text-stroke-color: $white;
         -webkit-text-stroke-width: 1px;
         letter-spacing: 0.75em;
         position: relative;
-        text-shadow: 2px 2px $pink, 5px 5px $blue;
+        text-shadow: 2px 2px $blue, 5px 5px $black;
         transform: translate(-50%, -50%);
       }
     }
@@ -332,7 +306,7 @@ h6 {
       );
       background-repeat: repeat-x;
       background-size: 100%;
-      color: $black;
+      color: $white;
       padding-left: 5px;
       text-decoration: none;
 
@@ -356,7 +330,7 @@ h6 {
       );
       background-repeat: repeat-x;
       background-size: 100%;
-      color: $black;
+      color: $white;
       margin-top: 0;
       padding-right: 5px;
       text-decoration: none;
@@ -482,64 +456,6 @@ h6 {
           width: 48px;
         }
       }
-    }
-  }
-}
-
-// DARK MODE.
-.dark-mode {
-  background: $react-grey !important;
-  color: $white;
-
-  .Items {
-    li {
-      div {
-        span {
-          &:hover {
-            background: $white;
-            color: $black;
-          }
-        }
-      }
-    }
-  }
-
-  .Expand {
-    background: #000a1f !important;
-    color: $white;
-  }
-
-  .Home {
-    background: $gray-hover !important;
-
-    .home-left {
-      h1 {
-        span {
-          -webkit-text-stroke-color: $white;
-          text-shadow: 2px 2px $blue, 5px 5px $black;
-        }
-      }
-    }
-  }
-
-  .About {
-    background: $gray-hover !important;
-  }
-
-  .Experience {
-    background: $gray-hover !important;
-  }
-
-  .Also_i_can {
-    background: $gray-hover !important;
-  }
-
-  .Contact {
-    background: $gray-hover !important;
-
-    h1,
-    h3 {
-      color: $white;
     }
   }
 }
