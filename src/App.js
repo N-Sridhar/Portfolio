@@ -10,37 +10,33 @@ import {
 
 const Home = lazy(() => import('./components/Home'));
 const About = lazy(() => import('./components/About'));
-const Experience = lazy(() => import('./components/Experience'));
-const Hobby = lazy(() => import('./components/Also_i_can'));
+const Skills = lazy(() => import('./components/Skills'));
+// const Hobby = lazy(() => import('./components/Also_i_can'));
 const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   const screens = [
-    {name: 'Home', icon: 'Home', link: '/', view: Home, navDelay: '.1s'},
+    {name: 'Home', link: '/', view: Home, navDelay: '.1s'},
     {
-      name: 'About',
-      icon: 'CornerDownRight',
+      name: 'About Me',
       link: '/about',
       view: About,
       navDelay: '.1s',
     },
     {
-      name: 'Experience',
-      icon: 'Briefcase',
+      name: 'My Skill Set',
       link: '/experience',
-      view: Experience,
+      view: Skills,
       navDelay: '.2s',
     },
+    // {
+    //   name: 'Also I Can',
+    //   link: '/also_i_can',
+    //   view: Hobby,
+    //   navDelay: '.3s',
+    // },
     {
-      name: 'Also I Can',
-      icon: 'Star',
-      link: '/also_i_can',
-      view: Hobby,
-      navDelay: '.3s',
-    },
-    {
-      name: 'Contact',
-      icon: 'Send',
+      name: 'To Find Me',
       link: '/contact',
       view: Contact,
       navDelay: '.4s',
