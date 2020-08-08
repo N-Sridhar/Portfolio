@@ -10,11 +10,17 @@ import GitHub from '../contact icons/github.svg';
 import Discord from '../contact icons/discord.svg';
 import Freelancer from '../contact icons/freelancer.svg';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
+import {ga} from '../firebase';
 
 function Contact() {
+  useEffect(() => {
+    ga.logEvent('Contact Page');
+    console.log('Contact Page');
+  }, []);
+
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
@@ -25,77 +31,77 @@ function Contact() {
   const icons = [
     {
       name: Phone,
-      alt: 'phone',
+      alt: 'Phone',
       href: 'tel:+91 9600208181',
       tooltip: 'Call:<br/>+91 9600208181',
       borderColor: 'green',
     },
     {
       name: Gmail,
-      alt: 'gmail',
+      alt: 'Gmail',
       href: 'mailto:nsridharbtech@gmail.com',
       tooltip: 'Mail:<br/>nsridharbtech@gmail.com',
       borderColor: '#b23121',
     },
     {
-      name: Whatsapp,
-      alt: 'whatsapp',
-      href: 'https://wa.me/919600208181?text=Hi%20Sridhar,%20',
-      tooltip: 'Whatsapp:<br/>96002 08181',
-      borderColor: '#25d366',
-    },
-    {
-      name: Facebook,
-      alt: 'facebook',
-      href: 'https://www.facebook.com/sri.luzifer',
-      tooltip: 'Facebook:<br/>Sridhar',
-      borderColor: '#3b5998',
-    },
-    {
-      name: Instagram,
-      alt: 'instagram',
-      href: 'https://www.instagram.com/sridhar.n3',
-      tooltip: 'Instagram:<br/>Sridhar',
-      borderColor: '#dd2a7b',
-    },
-    {
-      name: Twitter,
-      alt: 'twitter',
-      href: 'https://twitter.com/Sri_Luzifer',
-      tooltip: 'Twitter:<br/>Sridhar Nallsamy',
-      borderColor: '#00acee',
-    },
-    {
-      name: Snapchat,
-      alt: 'snapchat',
-      href: 'https://www.snapchat.com/add/n.sridhar3',
-      tooltip: 'Snapchat:<br/>n.sridhar3',
-      borderColor: '#fffc00',
-    },
-    {
       name: LinkedIn,
-      alt: 'linkedin',
+      alt: 'Linkedin',
       href: 'https://www.linkedin.com/in/sridhar-nallasamy-781564160',
       tooltip: 'LinkedIn:<br/>Sridhar Nallasamy',
       borderColor: '#0e76a8',
     },
     {
       name: GitHub,
-      alt: 'github',
+      alt: 'Github',
       href: 'https://github.com/N-Sridhar',
       tooltip: 'GitHub:<br/>N-Sridhar',
       borderColor: 'white',
     },
     {
+      name: Whatsapp,
+      alt: 'Whatsapp',
+      href: 'https://wa.me/919600208181?text=Hi%20Sridhar,%20',
+      tooltip: 'Whatsapp:<br/>96002 08181',
+      borderColor: '#25d366',
+    },
+    {
+      name: Instagram,
+      alt: 'Instagram',
+      href: 'https://www.instagram.com/sridhar.n3',
+      tooltip: 'Instagram:<br/>Sridhar',
+      borderColor: '#dd2a7b',
+    },
+    {
+      name: Facebook,
+      alt: 'Facebook',
+      href: 'https://www.facebook.com/sri.luzifer',
+      tooltip: 'Facebook:<br/>Sridhar',
+      borderColor: '#3b5998',
+    },
+    {
+      name: Twitter,
+      alt: 'Twitter',
+      href: 'https://twitter.com/Sri_Luzifer',
+      tooltip: 'Twitter:<br/>Sridhar Nallsamy',
+      borderColor: '#00acee',
+    },
+    {
+      name: Snapchat,
+      alt: 'Snapchat',
+      href: 'https://www.snapchat.com/add/n.sridhar3',
+      tooltip: 'Snapchat:<br/>n.sridhar3',
+      borderColor: '#fffc00',
+    },
+    {
       name: Discord,
-      alt: 'discord',
+      alt: 'Discord',
       href: 'https://discord.com/channels/CM%E4%B9%88SriLuzifer#0791',
       tooltip: 'Discord:<br/>CM么SriLuzifer',
       borderColor: '#7289da',
     },
     {
       name: Freelancer,
-      alt: 'freelancer',
+      alt: 'Freelancer',
       href: 'https://www.freelancer.in/u/SridharNallasamy',
       tooltip: 'Freelancer:<br/>@SridharNallasamy',
       borderColor: '#29b2fe',
@@ -116,6 +122,10 @@ function Contact() {
               alt={icon.alt}
               data-tip={icon.tooltip}
               data-border-color={icon.borderColor}
+              onClick={() => {
+                ga.logEvent(`${icon.alt} - visited`);
+                console.log(`${icon.alt} - visited`);
+              }}
             />
             <ReactTooltip place="bottom" multiline={true} border={true} />
           </a>

@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {animated, config, useTrail} from 'react-spring';
+import {ga} from '../firebase';
 
 function Also_i_can() {
+  useEffect(() => {
+    ga.logEvent('Also_I_Can Page');
+    console.log('Also_I_Can Page');
+  }, []);
+
   const [trail, set] = useTrail(1, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
