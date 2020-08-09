@@ -14,6 +14,7 @@ import React, {useEffect} from 'react';
 import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
 import {ga} from '../firebase';
+import Navbar from './Navbar';
 
 function Contact() {
   useEffect(() => {
@@ -109,29 +110,37 @@ function Contact() {
   ];
 
   return (
-    <div className="Contact">
-      <animated.div className="Text" style={trail[0]}>
-        <h1>Want to know more about me.</h1>
-        <h3>Then please feel free to reach me.</h3>
-      </animated.div>
-      <animated.div className="Icons" style={trail[1]}>
-        {icons.map((icon, i) => (
-          <a href={icon.href} key={i} target="_blank" rel="noopener noreferrer">
-            <animated.img
-              src={icon.name}
-              alt={icon.alt}
-              data-tip={icon.tooltip}
-              data-border-color={icon.borderColor}
-              onClick={() => {
-                ga.logEvent(`${icon.alt} - visited`);
-                console.log(`${icon.alt} - visited`);
-              }}
-            />
-            <ReactTooltip place="bottom" multiline={true} border={true} />
-          </a>
-        ))}
-      </animated.div>
-    </div>
+    <>
+      <Navbar show="yes" />
+      <div className="Contact">
+        <animated.div className="Text" style={trail[0]}>
+          <h1>Want to know more about me.</h1>
+          <h3>Then please feel free to reach me.</h3>
+        </animated.div>
+        <animated.div className="Icons" style={trail[1]}>
+          {icons.map((icon, i) => (
+            <a
+              href={icon.href}
+              key={i}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <animated.img
+                src={icon.name}
+                alt={icon.alt}
+                data-tip={icon.tooltip}
+                data-border-color={icon.borderColor}
+                onClick={() => {
+                  ga.logEvent(`${icon.alt} - visited`);
+                  console.log(`${icon.alt} - visited`);
+                }}
+              />
+              <ReactTooltip place="bottom" multiline={true} border={true} />
+            </a>
+          ))}
+        </animated.div>
+      </div>
+    </>
   );
 }
 

@@ -4,6 +4,7 @@ import React, {useEffect} from 'react';
 import {useTrail, config} from 'react-spring';
 import {animated} from 'react-spring';
 import {ga} from '../firebase';
+import Navbar from './Navbar';
 
 function Skills() {
   useEffect(() => {
@@ -18,12 +19,14 @@ function Skills() {
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   return (
-    <div className="Skills">
-      <animated.div className="Text" style={trail[0]}>
-        <h2>As of now.</h2>
-      </animated.div>
-      <animated.div className="Container" style={trail[1]}>
-        {/* <animated.div className="Card" style={trail[0]}>
+    <>
+      <Navbar show="yes" />
+      <div className="Skills">
+        <animated.div className="Text" style={trail[0]}>
+          <h2>As of now.</h2>
+        </animated.div>
+        <animated.div className="Container" style={trail[1]}>
+          {/* <animated.div className="Card" style={trail[0]}>
           <div className="Circle">
             <svg>
               <circle cx="70" cy="70" r="70"></circle>
@@ -36,15 +39,16 @@ function Skills() {
           </div>
         </animated.div> */}
 
-        <ul>
-          <li class="java">Java</li>
-          <li class="spring">Spring Framework</li>
-          <li class="htmlcss">HTML & CSS</li>
-          <li class="react">React Js</li>
-          <li class="sass">SASS</li>
-        </ul>
-      </animated.div>
-    </div>
+          <ul>
+            <li className="java">Java</li>
+            <li className="spring">Spring Framework</li>
+            <li className="htmlcss">HTML & CSS</li>
+            <li className="react">React Js</li>
+            <li className="sass">SASS</li>
+          </ul>
+        </animated.div>
+      </div>
+    </>
   );
 }
 

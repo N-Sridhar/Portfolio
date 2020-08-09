@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {animated, config, useTrail} from 'react-spring';
 import {ga} from '../firebase';
+import Navbar from './Navbar';
 
 function Also_i_can() {
   useEffect(() => {
@@ -15,11 +16,14 @@ function Also_i_can() {
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   return (
-    <div className="Also_i_can">
-      <animated.div style={trail[0]}>
-        <h1>Also_i_can</h1>
-      </animated.div>
-    </div>
+    <>
+      <Navbar show="yes" />
+      <div className="Also_i_can">
+        <animated.div style={trail[0]}>
+          <h1>Also_i_can</h1>
+        </animated.div>
+      </div>
+    </>
   );
 }
 

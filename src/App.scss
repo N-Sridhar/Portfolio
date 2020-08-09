@@ -6,7 +6,7 @@ $react-grey: #282c34;
 // .Navbar .Expand
 $gray-light: #6c757d10;
 $gray-hover: #6c757d20;
-$gray-bg: #000000a9;
+$gray-bg: #000000b9;
 $pblue-light: #4c75f210;
 $dark-blue: #000a1f;
 
@@ -81,18 +81,21 @@ h6 {
 }
 
 // Mixins
-@mixin base-card($height) {
+@mixin black-shadow($y, $blur) {
   -moz-box-shadow: 0 0.1px 35px $black;
   -webkit-appearance: none !important;
   -webkit-box-shadow: 0 0.1px 35px $black;
+  box-shadow: 0 $y $blur rgb(0, 0, 0);
+}
+
+@mixin base-card($height) {
+  @include black-shadow(2px, 10px);
   background: $gray-bg;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgb(0, 0, 0);
   height: $height;
   justify-content: center;
   margin-left: 4.5rem;
   margin-right: 4.5rem;
-  // z-index: 99;
 }
 
 @mixin base-card-mobile {
@@ -232,12 +235,16 @@ h6 {
       width: (100% / 4);
 
       span {
+        @include black-shadow(1px, 5px);
+        background: $gray-bg;
+        border-radius: 5px;
+        color: $white;
         font-family: Tahoma, Geneva, sans-serif;
+        padding: 0.3rem 0.5rem;
 
         &:hover {
-          background: $white;
+          background: $salmon;
           border-radius: 5px;
-          color: $black;
           padding: 0.3rem 0.5rem;
         }
       }
@@ -295,21 +302,17 @@ h6 {
 
 .Home {
   .Home-Main {
-    -moz-box-shadow: 0 0.1px 35px $black;
-    -webkit-appearance: none !important;
-    -webkit-box-shadow: 0 0.1px 35px $black;
-    // background: $gray-hover;
+    @include black-shadow(2px, 10px);
     background: $gray-bg;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgb(0, 0, 0);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 35rem;
+    // height: 28rem;
     justify-content: center;
     margin-left: 4.5rem;
     margin-right: 4.5rem;
-    // z-index: 99;
+    margin-top: 1rem;
 
     .home-left,
     .home-right {
@@ -365,6 +368,8 @@ h6 {
 
     a {
       color: inherit;
+      // margin-left: 1rem;
+      // margin-right: 1rem;
       text-decoration: none;
       width: (100% / 3);
     }
@@ -372,18 +377,14 @@ h6 {
     .left,
     .middle,
     .right {
-      -moz-box-shadow: 0 0.1px 35px $black;
-      -webkit-appearance: none !important;
-      -webkit-box-shadow: 0 0.1px 35px $black;
+      @include black-shadow(2px, 10px);
       align-items: center;
       background: $gray-bg;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgb(0, 0, 0);
       cursor: pointer;
       display: flex;
       height: 10rem;
       justify-content: center;
-      // z-index: 99;
     }
 
     .left {

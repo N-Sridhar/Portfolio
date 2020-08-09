@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useTrail, config, animated} from 'react-spring';
 import {ga} from '../firebase';
+import Navbar from './Navbar';
 
 function About() {
   useEffect(() => {
@@ -15,28 +16,31 @@ function About() {
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   return (
-    <div className="About">
-      <animated.div style={trail[0]}>
-        <h2>
-          <span>
-            I am Sridhar and i expertise in visual effects.Check out the
-            services offered! To know a little more about me,keep going.
-            <br />
-            I am a free spirited person who thrives on enthusiasm and strives to
-            heighten the energy level of my environment.
-            <br />
-            My hometown is Tiruppur,TN and is close to my heart. It's the kind
-            of place that grows on you! When you have a meddlesome mind,you
-            stumble across a number of things that incites curiosity.
-            <br />
-            VFX is one such discovery for me and i have grown passionate of it
-            ever since.That's all folks! Thank you for your time and patience.
-            <br />
-            Well, did I mention my killer skills in football❗
-          </span>
-        </h2>
-      </animated.div>
-    </div>
+    <>
+      <Navbar show="yes" />
+      <div className="About">
+        <animated.div style={trail[0]}>
+          <h2>
+            <span>
+              I am Sridhar and i expertise in visual effects.Check out the
+              services offered! To know a little more about me,keep going.
+              <br />
+              I am a free spirited person who thrives on enthusiasm and strives
+              to heighten the energy level of my environment.
+              <br />
+              My hometown is Tiruppur,TN and is close to my heart. It's the kind
+              of place that grows on you! When you have a meddlesome mind,you
+              stumble across a number of things that incites curiosity.
+              <br />
+              VFX is one such discovery for me and i have grown passionate of it
+              ever since.That's all folks! Thank you for your time and patience.
+              <br />
+              Well, did I mention my killer skills in football❗
+            </span>
+          </h2>
+        </animated.div>
+      </div>
+    </>
   );
 }
 

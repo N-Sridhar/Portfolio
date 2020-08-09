@@ -1,10 +1,37 @@
 import Logo from '../VGS.svg';
 
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, lazy} from 'react';
 import * as Icon from 'react-feather';
 import {useSpring, animated, useTransition} from 'react-spring';
-import {useLockBodyScroll, useWindowSize} from 'react-use';
+import {useLockBodyScroll} from 'react-use';
 import {Link} from 'react-router-dom';
+
+const Home = lazy(() => import('./Home'));
+const About = lazy(() => import('./About'));
+const Skills = lazy(() => import('./Skills'));
+const Contact = lazy(() => import('./Contact'));
+
+export const screens = [
+  {name: 'Home', link: '/', view: Home, navDelay: '.1s'},
+  {
+    name: 'About Me',
+    link: '/about',
+    view: About,
+    navDelay: '.1s',
+  },
+  {
+    name: 'My Skill Set',
+    link: '/skills',
+    view: Skills,
+    navDelay: '.2s',
+  },
+  {
+    name: 'To Find Me',
+    link: '/contact',
+    view: Contact,
+    navDelay: '.3s',
+  },
+];
 
 const SLIDE_IN_MOBILE = {
   opacity: 1,
@@ -22,10 +49,9 @@ const SLIDE_OUT_MOBILE = {
   zIndex: 999,
 };
 
-function Navbar({menuOptions}) {
+function Navbar({show}) {
   const [expand, setExpand] = useState(false);
 
-  const windowSize = useWindowSize();
   useLockBodyScroll(expand);
 
   const [spring, set, stop] = useSpring(() => ({opacity: 0}));
@@ -49,8 +75,11 @@ function Navbar({menuOptions}) {
 
       <MenuX {...{expand, setExpand}} />
 
-      <animated.div className="Items">
-        {menuOptions.map((option, i) => (
+      <animated.div
+        className="Items"
+        style={show === 'yes' ? {} : {display: 'none'}}
+      >
+        {screens.map((option, i) => (
           <animated.div
             className="NavItems fadeInUp"
             style={{animationDelay: `${option.navDelay}`}}
@@ -66,7 +95,7 @@ function Navbar({menuOptions}) {
       {transitions.map(({item, key, props}) =>
         item ? (
           <animated.div key={key} style={props}>
-            <Expand {...{menuOptions, setExpand, windowSize}} />
+            <Expand {...{setExpand}} />
           </animated.div>
         ) : (
           <animated.div key={key} style={props}></animated.div>
@@ -76,11 +105,11 @@ function Navbar({menuOptions}) {
   );
 }
 
-function Expand({menuOptions, setExpand}) {
+function Expand({setExpand}) {
   const expandElement = useRef(null);
   return (
     <div className="Expand fadeInUp" ref={expandElement}>
-      {menuOptions.map((option, i) => {
+      {screens.map((option, i) => {
         return (
           <Link
             to={option.link}
