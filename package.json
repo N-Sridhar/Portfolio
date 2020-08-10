@@ -9,6 +9,7 @@
     "firebase": "^7.17.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-device-detect": "^1.13.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
     "react-helmet": "^6.1.0",
