@@ -19,4 +19,8 @@ const db = firebaseApp.firestore();
 
 const ga = firebase.analytics();
 
-export {db, ga};
+const collectionName = 'user';
+
+const fieldValue = firebase.firestore.FieldValue;
+
+export {db, ga, collectionName, fieldValue};
