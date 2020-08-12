@@ -10,17 +10,43 @@ import GitHub from '../contact icons/github.svg';
 import Discord from '../contact icons/discord.svg';
 import Freelancer from '../contact icons/freelancer.svg';
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
+import {updatePage, contactVisited} from '../firestore';
+// eslint-disable-next-line no-unused-vars
+import {CountContext, SetCountContext} from '../App';
 
-function Contact() {
+function Contact({id}) {
+  const [visited, setVisited] = useState(null);
+
   useEffect(() => {
+    document.title = 'Sridhar Nallasamy 😊 • 📲';
     ga.logEvent('Contact Page');
     console.log('Contact Page');
   }, []);
+
+  const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
+
+  useEffect(() => {
+    if (id !== '') {
+      setCount((prevCount) => prevCount + 1);
+      updatePage(id, count + '. contact page');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
+    if (visited !== null) {
+      ga.logEvent(visited);
+      console.log(visited);
+      setVisitOrder((prevCount) => prevCount + 1);
+      contactVisited(id, visitOrder + '. ' + visited);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visited, id]);
 
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',
@@ -130,10 +156,10 @@ function Contact() {
                 alt={icon.alt}
                 data-tip={icon.tooltip}
                 data-border-color={icon.borderColor}
-                onClick={() => {
-                  ga.logEvent(`${icon.alt} - visited`);
-                  console.log(`${icon.alt} - visited`);
-                }}
+                onClick={
+                  () => setVisited(`${icon.alt}`)
+                  // console.log(visited);
+                }
               />
               <ReactTooltip place="bottom" multiline={true} border={true} />
             </a>

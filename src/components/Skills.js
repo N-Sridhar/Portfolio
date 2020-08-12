@@ -1,16 +1,29 @@
 // import Java from '../skill icons/java.svg';
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
 import {animated} from 'react-spring';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
+import {updatePage} from '../firestore';
+import {CountContext} from '../App';
 
-function Skills() {
+function Skills({id}) {
   useEffect(() => {
+    document.title = 'Sridhar Nallasamy 😊 • 👨🏻‍💻';
     ga.logEvent('Skills Page');
     console.log('Skills Page');
   }, []);
+
+  const [count, setCount] = useContext(CountContext);
+
+  useEffect(() => {
+    if (id !== '') {
+      setCount((prevCount) => prevCount + 1);
+      updatePage(id, count + '. skills page');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',
