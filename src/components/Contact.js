@@ -15,11 +15,14 @@ import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
-import {updatePage, contactVisited} from '../firestore';
+import {updatePage, contactVisited, updatePageTime} from '../firestore';
 // eslint-disable-next-line no-unused-vars
 import {CountContext, SetCountContext} from '../App';
+import moment from 'moment';
 
 function Contact({id}) {
+  const entryTime = moment();
+
   const [visited, setVisited] = useState(null);
 
   useEffect(() => {
@@ -43,10 +46,23 @@ function Contact({id}) {
       ga.logEvent(visited);
       console.log(visited);
       setVisitOrder((prevCount) => prevCount + 1);
-      contactVisited(id, visitOrder + '. ' + visited);
+      contactVisited(
+        id,
+        visitOrder + '. ' + visited + ' (' + moment().format('h:mm:ss a') + ')'
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visited, id]);
+
+  useEffect(() => {
+    return () => {
+      const exitTime = moment();
+      if (id !== '') {
+        updatePageTime(entryTime, exitTime, id, count + '. contact page');
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',

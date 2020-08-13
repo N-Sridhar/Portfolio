@@ -4,11 +4,14 @@ import {ga} from '../firebase';
 import {Link} from 'react-router-dom';
 import Navbar from './Navbar';
 import {useWindowSize} from 'react-use';
-import {updatePage} from '../firestore';
+import {updatePage, updatePageTime} from '../firestore';
 // eslint-disable-next-line no-unused-vars
 import {CountContext} from '../App';
+import moment from 'moment';
 
 function Home({id}) {
+  const entry = moment();
+
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 🏡';
     ga.logEvent('Home Page');
@@ -30,6 +33,16 @@ function Home({id}) {
       setCount((prevCount) => prevCount + 1);
       updatePage(id, count + '. home page');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
+    return () => {
+      const exit = moment();
+      if (id !== '') {
+        updatePageTime(entry, exit, id, count + '. home page');
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 

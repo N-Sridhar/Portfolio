@@ -63,6 +63,26 @@ const updatePage = async (id, pageName) => {
     .catch((err) => console.log(err));
 };
 
+const updatePageTime = async (startTime, endTime, id, pageName) => {
+  var sec = endTime.diff(startTime, 'seconds');
+  const time =
+    sec <= 60 ? sec + 's' : (sec - (sec %= 60)) / 60 + 'm ' + sec + 's';
+  // (s-(s%=60))/60+(9<s?':':':0')+s
+
+  await db
+    .collection(collectionName)
+    .doc(id)
+    .update({'7 screens:': fieldValue.arrayRemove(pageName)})
+    .then(
+      await db
+        .collection(collectionName)
+        .doc(id)
+        .update({'7 screens:': fieldValue.arrayUnion(pageName + ' - ' + time)})
+        .then((res) => console.log('updated with time'))
+        .catch((err) => console.log(err))
+    );
+};
+
 const contactVisited = async (id, iconName) => {
   await db
     .collection(collectionName)
@@ -79,4 +99,5 @@ export {
   updateCoords,
   updatePage,
   contactVisited,
+  updatePageTime,
 };

@@ -5,10 +5,13 @@ import {useTrail, config} from 'react-spring';
 import {animated} from 'react-spring';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
-import {updatePage} from '../firestore';
+import {updatePage, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
+import moment from 'moment';
 
 function Skills({id}) {
+  const entryTime = moment();
+
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 👨🏻‍💻';
     ga.logEvent('Skills Page');
@@ -22,6 +25,16 @@ function Skills({id}) {
       setCount((prevCount) => prevCount + 1);
       updatePage(id, count + '. skills page');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
+    return () => {
+      const exitTime = moment();
+      if (id !== '') {
+        updatePageTime(entryTime, exitTime, id, count + '. skills page');
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
