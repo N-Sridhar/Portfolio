@@ -1,14 +1,15 @@
-import Phone from '../contact icons/phone.svg';
-import Gmail from '../contact icons/gmail.svg';
-import Whatsapp from '../contact icons/whatsapp.svg';
-import Facebook from '../contact icons/facebook.svg';
-import Instagram from '../contact icons/insta.svg';
-import Twitter from '../contact icons/twitter.svg';
-import Snapchat from '../contact icons/snapchat.svg';
-import LinkedIn from '../contact icons/linkedin.svg';
-import GitHub from '../contact icons/github.svg';
-import Discord from '../contact icons/discord.svg';
-import Freelancer from '../contact icons/freelancer.svg';
+import Phone from '../icons/phone.svg';
+import Gmail from '../icons/gmail.svg';
+import Whatsapp from '../icons/whatsapp.svg';
+import Facebook from '../icons/facebook.svg';
+import Instagram from '../icons/insta.svg';
+import Twitter from '../icons/twitter.svg';
+import Snapchat from '../icons/snapchat.svg';
+import LinkedIn from '../icons/linkedin.svg';
+import GitHub from '../icons/github.svg';
+import Discord from '../icons/discord.svg';
+import Freelancer from '../icons/freelancer.svg';
+import Thanks from '../icons/thanks.png';
 
 import React, {useEffect, useState, useContext} from 'react';
 import {useTrail, animated, config} from 'react-spring';
@@ -16,8 +17,7 @@ import ReactTooltip from 'react-tooltip';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
 import {updatePage, contactVisited, updatePageTime} from '../firestore';
-// eslint-disable-next-line no-unused-vars
-import {CountContext, SetCountContext} from '../App';
+import {CountContext} from '../App';
 import moment from 'moment';
 
 function Contact({id}) {
@@ -36,7 +36,10 @@ function Contact({id}) {
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
-      updatePage(id, count + '. contact page');
+      updatePage(
+        id,
+        count + '. contact page (' + entryTime.format('h:mm:ss a') + ')'
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -58,7 +61,12 @@ function Contact({id}) {
     return () => {
       const exitTime = moment();
       if (id !== '') {
-        updatePageTime(entryTime, exitTime, id, count + '. contact page');
+        updatePageTime(
+          entryTime,
+          exitTime,
+          id,
+          count + '. contact page (' + entryTime.format('h:mm:ss a') + ')'
+        );
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,8 +164,11 @@ function Contact({id}) {
       <Navbar show="yes" />
       <div className="Contact">
         <animated.div className="Text" style={trail[0]}>
-          <h1>Want to know more about me.</h1>
-          <h3>Then please feel free to reach me.</h3>
+          <h2>
+            Need a hand?
+            <br />
+            Reach me by your convenient medium.
+          </h2>
         </animated.div>
         <animated.div className="Icons" style={trail[1]}>
           {icons.map((icon, i) => (
@@ -172,15 +183,15 @@ function Contact({id}) {
                 alt={icon.alt}
                 data-tip={icon.tooltip}
                 data-border-color={icon.borderColor}
-                onClick={
-                  () => setVisited(`${icon.alt}`)
-                  // console.log(visited);
-                }
+                onClick={() => setVisited(`${icon.alt}`)}
               />
               <ReactTooltip place="bottom" multiline={true} border={true} />
             </a>
           ))}
         </animated.div>
+      </div>
+      <div className="Thanks opacityIn" style={{animationDelay: '.25s'}}>
+        <img src={Thanks} alt="Thanks" />
       </div>
     </>
   );

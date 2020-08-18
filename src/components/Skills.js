@@ -1,4 +1,9 @@
-// import Java from '../skill icons/java.svg';
+import Ps from '../icons/ps.svg';
+import Ae from '../icons/ae.svg';
+import Pr from '../icons/pr.svg';
+// eslint-disable-next-line
+import Ai from '../icons/ai.svg';
+import Blender from '../icons/blender.svg';
 
 import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
@@ -23,7 +28,10 @@ function Skills({id}) {
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
-      updatePage(id, count + '. skills page');
+      updatePage(
+        id,
+        count + '. skills page (' + entryTime.format('h:mm:ss a') + ')'
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -32,13 +40,18 @@ function Skills({id}) {
     return () => {
       const exitTime = moment();
       if (id !== '') {
-        updatePageTime(entryTime, exitTime, id, count + '. skills page');
+        updatePageTime(
+          entryTime,
+          exitTime,
+          id,
+          count + '. skills page (' + entryTime.format('h:mm:ss a') + ')'
+        );
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const [trail, set] = useTrail(2, () => ({
+  const [trail, set] = useTrail(4, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
     config: config.wobbly,
@@ -48,11 +61,12 @@ function Skills({id}) {
     <>
       <Navbar show="yes" />
       <div className="Skills">
-        <animated.div className="Text" style={trail[0]}>
-          <h2>As of now.</h2>
-        </animated.div>
-        <animated.div className="Container" style={trail[1]}>
-          {/* <animated.div className="Card" style={trail[0]}>
+        <div className="Profession">
+          <animated.div className="Text" style={trail[0]}>
+            <h2>Profession.</h2>
+          </animated.div>
+          <animated.div className="Container" style={trail[1]}>
+            {/* <animated.div className="Card" style={trail[0]}>
           <div className="Circle">
             <svg>
               <circle cx="70" cy="70" r="70"></circle>
@@ -64,15 +78,34 @@ function Skills({id}) {
             </div>
           </div>
         </animated.div> */}
-
-          <ul>
-            <li className="java">Java</li>
-            <li className="spring">Spring Framework</li>
-            <li className="htmlcss">HTML & CSS</li>
-            <li className="react">React Js</li>
-            <li className="sass">SASS</li>
-          </ul>
-        </animated.div>
+            <ul>
+              <li className="java">Java</li>
+              <li className="spring">Spring Framework</li>
+              <li className="htmlcss">HTML & CSS</li>
+              <li className="react">React Js</li>
+              <li className="sass">SASS</li>
+            </ul>
+          </animated.div>
+        </div>
+        <div className="Passion">
+          <animated.div className="Text" style={trail[2]}>
+            <h2>Passion.</h2>
+          </animated.div>
+          <animated.div className="Cards" style={trail[3]}>
+            <h3 className="ps">
+              <img src={Ps} alt="Photoshop" />
+            </h3>
+            <h3 className="ae">
+              <img src={Ae} alt="AfterEffects" />
+            </h3>
+            <h3 className="pr">
+              <img src={Pr} alt="PremierePro" />
+            </h3>
+            <h3 className="blender">
+              <img src={Blender} alt="Blender" />
+            </h3>
+          </animated.div>
+        </div>
       </div>
     </>
   );

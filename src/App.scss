@@ -47,7 +47,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'archia';
+  // font-family: 'archia';
+  font-family: Tahoma, Geneva, sans-serif;
 }
 
 h1 {
@@ -76,7 +77,7 @@ h5 {
 }
 
 h6 {
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 600;
 }
 
@@ -98,11 +99,21 @@ h6 {
   margin-right: 4.5rem;
 }
 
+@mixin card-container($height) {
+  @include black-shadow(2px, 10px);
+  align-items: center;
+  background: $gray-bg;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  height: $height;
+  justify-content: center;
+}
+
 @mixin base-card-mobile {
   flex-wrap: wrap;
   margin-left: 1rem;
   margin-right: 1rem;
-  padding-top: 0.5rem;
 }
 
 .App {
@@ -302,16 +313,10 @@ h6 {
 
 .Home {
   .Home-Main {
-    @include black-shadow(2px, 10px);
-    background: $gray-bg;
-    border-radius: 10px;
+    @include base-card(fit-content);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    // height: 28rem;
-    justify-content: center;
-    margin-left: 4.5rem;
-    margin-right: 4.5rem;
     margin-top: 1rem;
 
     .home-left,
@@ -326,7 +331,6 @@ h6 {
       justify-content: center;
       margin-left: 2.5rem;
       margin-right: 2.5rem;
-      // min-height: 30rem;
 
       h1 {
         margin: 20px;
@@ -348,7 +352,6 @@ h6 {
       justify-content: center;
       margin-left: 2.5rem;
       margin-right: 2.5rem;
-      // min-height: 30rem;
 
       h3 {
         text-transform: uppercase;
@@ -368,8 +371,6 @@ h6 {
 
     a {
       color: inherit;
-      // margin-left: 1rem;
-      // margin-right: 1rem;
       text-decoration: none;
       width: (100% / 3);
     }
@@ -403,180 +404,344 @@ h6 {
 }
 
 .About {
-  @include base-card(35rem);
+  .Text {
+    @include base-card(15rem);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 
-  h2 {
-    text-align: center;
+    h3 {
+      text-align: center;
 
-    span {
-      font-family: Tahoma, Geneva, sans-serif;
+      span {
+        line-height: 28px;
+      }
+    }
+  }
+
+  .Resume {
+    display: flex;
+    flex-direction: row;
+    height: 5rem;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    margin-top: 2rem;
+
+    .Resume-card {
+      @include black-shadow(2px, 10px);
+      align-items: center;
+      background: $gray-bg;
+      border-radius: 10px;
+      display: flex;
+      height: 5rem;
+      justify-content: space-around;
+      width: (100% / 3);
+
+      h3 {
+        text-align: center;
+      }
+
+      .Icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .About-button {
+    display: flex;
+    // flex-direction: row;
+    height: 10rem;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    margin-top: 2rem;
+
+    a {
+      align-items: center;
+      color: inherit;
+      display: flex;
+      justify-content: space-around;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .left,
+    .right {
+      @include black-shadow(2px, 10px);
+      align-items: center;
+      background: $gray-bg;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      height: 10rem;
+      width: (100% / 3);
+    }
+
+    .left {
+      margin-left: 5rem;
+
+      h3 {
+        text-align: center;
+
+        span {
+          line-height: 28px;
+        }
+      }
+    }
+
+    .right {
+      margin-right: 5rem;
     }
   }
 }
 
 .Skills {
-  @include base-card(35rem);
+  .Profession {
+    @include base-card(fit-content);
 
-  .Container {
-    align-items: center;
-    display: flex;
-    // flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    width: 100%;
+    .Text {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 8rem;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
 
-    // .Card {
-    //   background: #414141;
-    //   border-radius: 10px;
-    //   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    //   // align-items: center;
-    //   color: $black;
-    //   display: flex;
-    //   flex-direction: column;
-    //   height: 300px;
-    //   justify-content: center;
-    //   // position: relative;
-    //   text-align: center;
-    //   width: 300px;
-    //   z-index: 999;
+    .Container {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 2rem;
+      width: 100%;
 
-    // .Circle {
-    //   svg {
-    //     height: 150px;
-    //     position: relative;
-    //     width: 150px;
+      // .Card {
+      //   background: #414141;
+      //   border-radius: 10px;
+      //   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      //   // align-items: center;
+      //   color: $black;
+      //   display: flex;
+      //   flex-direction: column;
+      //   height: 300px;
+      //   justify-content: center;
+      //   // position: relative;
+      //   text-align: center;
+      //   width: 300px;
+      //   z-index: 999;
 
-    //     circle {
-    //       fill: none;
-    //       height: 150px;
-    //       stroke: $black;
-    //       stroke-dasharray: 440;
-    //       stroke-dashoffset: 440;
-    //       stroke-linecap: round;
-    //       stroke-width: 10;
-    //       transform: translate(5px, 5px);
-    //       width: 150px;
+      // .Circle {
+      //   svg {
+      //     height: 150px;
+      //     position: relative;
+      //     width: 150px;
 
-    //       &:nth-child(1) {
-    //         stroke: #838383;
-    //         stroke-dashoffset: 0;
-    //       }
+      //     circle {
+      //       fill: none;
+      //       height: 150px;
+      //       stroke: $black;
+      //       stroke-dasharray: 440;
+      //       stroke-dashoffset: 440;
+      //       stroke-linecap: round;
+      //       stroke-width: 10;
+      //       transform: translate(5px, 5px);
+      //       width: 150px;
 
-    //       &:nth-child(2) {
-    //         stroke: #00b6bd;
-    //         stroke-dashoffset: calc(440 - (440 * 80) / 100);
-    //       }
-    //     }
-    //   }
+      //       &:nth-child(1) {
+      //         stroke: #838383;
+      //         stroke-dashoffset: 0;
+      //       }
 
-    //   .Percent {
-    //     align-items: center;
-    //     display: flex;
-    //     height: 100%;
-    //     justify-content: center;
-    //     left: 0;
-    //     position: absolute;
-    //     top: 0;
-    //     width: 100%;
-    //   }
-    // }
-    // }
+      //       &:nth-child(2) {
+      //         stroke: #00b6bd;
+      //         stroke-dashoffset: calc(440 - (440 * 80) / 100);
+      //       }
+      //     }
+      //   }
 
-    li {
-      font-family: Tahoma, Geneva, sans-serif;
-      list-style: none;
-      margin: 50px 0;
-      position: relative;
-      text-transform: uppercase;
-      width: 40rem;
+      //   .Percent {
+      //     align-items: center;
+      //     display: flex;
+      //     height: 100%;
+      //     justify-content: center;
+      //     left: 0;
+      //     position: absolute;
+      //     top: 0;
+      //     width: 100%;
+      //   }
+      // }
+      // }
 
-      &::before {
-        background-color: rgba(54, 126, 223, 0.5);
-        border: 0.5px solid rgba(0, 0, 0, 0.3);
-        border-radius: 1000px;
-        box-shadow: 0 0 3px #2187e7b3;
-        content: '';
-        height: 10px;
-        left: 0;
-        position: absolute;
-        top: calc(100% + 10px);
-        width: 100%;
-      }
+      li {
+        font-family: Tahoma, Geneva, sans-serif;
+        list-style: none;
+        margin: 50px 0;
+        position: relative;
+        text-transform: uppercase;
+        width: 45rem;
 
-      &::after {
-        animation-duration: 1.5s;
-        animation-fill-mode: forwards;
-        animation-timing-function: ease;
-        background-color: rgba(54, 126, 223, 1);
-        border: 0.5px solid rgba(0, 0, 0, 0.3);
-        border-radius: 1000px;
-        box-shadow: 0 0 3px #2187e7b3;
-        content: '';
-        height: 10px;
-        left: 0;
-        position: absolute;
-        top: calc(100% + 10px);
-        width: 0;
-      }
-
-      &.java {
-        &::after {
-          animation-name: java;
+        &:first-child {
+          margin: 25px 0;
         }
 
-        @keyframes java {
-          to {
-            width: 85%;
+        &::before {
+          background-color: rgba(54, 126, 223, 0.5);
+          border: 0.5px solid rgba(0, 0, 0, 0.3);
+          border-radius: 1000px;
+          box-shadow: 0 0 3px #2187e7b3;
+          content: '';
+          height: 10px;
+          left: 0;
+          position: absolute;
+          top: calc(100% + 10px);
+          width: 100%;
+        }
+
+        &::after {
+          animation-duration: 1.5s;
+          animation-fill-mode: forwards;
+          animation-timing-function: ease;
+          background-color: rgba(54, 126, 223, 1);
+          border: 0.5px solid rgba(0, 0, 0, 0.3);
+          border-radius: 1000px;
+          box-shadow: 0 0 3px #2187e7b3;
+          content: '';
+          height: 10px;
+          left: 0;
+          position: absolute;
+          top: calc(100% + 10px);
+          width: 0;
+        }
+
+        &.java {
+          &::after {
+            animation-name: java;
+          }
+
+          @keyframes java {
+            to {
+              width: 80%;
+            }
+          }
+        }
+
+        &.spring {
+          &::after {
+            animation-name: spring;
+          }
+
+          @keyframes spring {
+            to {
+              width: 75%;
+            }
+          }
+        }
+
+        &.htmlcss {
+          &::after {
+            animation-name: htmlcss;
+          }
+
+          @keyframes htmlcss {
+            to {
+              width: 80%;
+            }
+          }
+        }
+
+        &.react {
+          &::after {
+            animation-name: react;
+          }
+
+          @keyframes react {
+            to {
+              width: 85%;
+            }
+          }
+        }
+
+        &.sass {
+          &::after {
+            animation-name: sass;
+          }
+
+          @keyframes sass {
+            to {
+              width: 80%;
+            }
           }
         }
       }
+    }
+  }
 
-      &.spring {
-        &::after {
-          animation-name: spring;
-        }
+  .Passion {
+    @include base-card(fit-content);
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
 
-        @keyframes spring {
-          to {
-            width: 80%;
-          }
+    .Text {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 8rem;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .Cards {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      padding-bottom: 2rem;
+      width: 100%;
+
+      .ps,
+      .ae,
+      .pr,
+      .blender {
+        -moz-box-shadow: 0 0.1px 35px $black;
+        -webkit-appearance: none !important;
+        -webkit-box-shadow: 0 0.1px 35px $black;
+        align-items: center;
+        background: #000d1f62;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgb(0, 0, 0);
+        display: flex;
+        height: 15rem;
+        justify-content: center;
+        width: (100% / 4);
+
+        img {
+          height: 50px;
+          width: 50px;
         }
       }
 
-      &.htmlcss {
-        &::after {
-          animation-name: htmlcss;
-        }
-
-        @keyframes htmlcss {
-          to {
-            width: 90%;
-          }
-        }
+      .ps {
+        margin-left: 2rem;
+        margin-right: 1rem;
       }
 
-      &.react {
-        &::after {
-          animation-name: react;
-        }
-
-        @keyframes react {
-          to {
-            width: 80%;
-          }
-        }
+      .ae {
+        margin-left: 1rem;
+        margin-right: 1rem;
       }
 
-      &.sass {
-        &::after {
-          animation-name: sass;
-        }
+      .pr {
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
 
-        @keyframes sass {
-          to {
-            width: 88%;
-          }
-        }
+      .blender {
+        margin-left: 1rem;
+        margin-right: 2rem;
       }
     }
   }
@@ -587,7 +752,7 @@ h6 {
 }
 
 .Contact {
-  @include base-card(28rem);
+  @include base-card(25rem);
 
   .Text {
     align-items: center;
@@ -598,7 +763,7 @@ h6 {
     text-align: center;
     width: 100%;
 
-    h1 {
+    h2 {
       background: linear-gradient(
         to right,
         $salmon 0%,
@@ -608,37 +773,12 @@ h6 {
       background-repeat: repeat-x;
       background-size: 100%;
       color: $white;
-      padding-left: 5px;
+      padding-left: 10px;
       text-decoration: none;
 
       &:hover {
         background: linear-gradient(
           to right,
-          $salmon 0%,
-          $salmon 10px,
-          transparent
-        );
-        cursor: pointer;
-      }
-    }
-
-    h3 {
-      background: linear-gradient(
-        to left,
-        $salmon 0%,
-        $salmon 3px,
-        transparent 1px
-      );
-      background-repeat: repeat-x;
-      background-size: 100%;
-      color: $white;
-      margin-top: 0;
-      padding-right: 5px;
-      text-decoration: none;
-
-      &:hover {
-        background: linear-gradient(
-          to left,
           $salmon 0%,
           $salmon 10px,
           transparent
@@ -666,15 +806,21 @@ h6 {
   }
 }
 
+.Thanks {
+  text-align: center;
+
+  img {
+    height: 150px;
+    width: 425px;
+  }
+}
+
 // RESPONSIVE FOR MOBILE SCREEN'S.
 @media screen and (max-width: 768px) {
   .Navbar {
     .Brand {
-      // display: flex;
       float: left;
       margin-left: 35px;
-      // margin-top: 5px;
-      // padding: 10px;
 
       img {
         width: 80px;
@@ -696,6 +842,7 @@ h6 {
   .Home {
     .Home-Main {
       @include base-card-mobile;
+      margin-top: 0;
 
       .home-left,
       .home-right {
@@ -708,10 +855,8 @@ h6 {
 
     .Home-Button {
       @include base-card-mobile;
-
       height: fit-content;
       margin-top: 1rem;
-      padding-top: 0;
 
       a {
         width: 100%;
@@ -741,15 +886,107 @@ h6 {
   }
 
   .About {
-    @include base-card-mobile;
+    .Text {
+      @include base-card-mobile;
+      height: 22rem;
+
+      h2 {
+        span {
+          line-height: 28px;
+        }
+      }
+    }
+
+    .Resume {
+      @include base-card-mobile;
+      margin-bottom: 0;
+      margin-top: 1rem;
+
+      .Resume-card {
+        width: 100%;
+      }
+    }
+
+    .About-button {
+      @include base-card-mobile;
+      height: fit-content;
+      margin-top: 1rem;
+
+      .left,
+      .right {
+        display: flex;
+        height: 8rem;
+        margin: 0;
+        width: 100%;
+      }
+
+      .left {
+        margin-bottom: 0.5rem;
+      }
+
+      .right {
+        margin-top: 0.5rem;
+      }
+    }
   }
 
   .Skills {
-    @include base-card-mobile;
+    .Profession {
+      @include base-card-mobile;
 
-    .Container {
-      li {
-        width: 20rem;
+      .Text {
+        height: 5rem;
+      }
+
+      .Container {
+        padding-bottom: 0.5rem;
+
+        li {
+          width: 20rem;
+        }
+      }
+    }
+
+    .Passion {
+      @include base-card-mobile;
+      margin-top: 1rem;
+
+      .Text {
+        height: 5rem;
+      }
+
+      .Cards {
+        flex-wrap: wrap;
+
+        .ps,
+        .ae,
+        .pr,
+        .blender {
+          height: 10rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          width: (100% / 3);
+        }
+
+        .ps {
+          // margin-left: 1rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .ae {
+          //   margin-left: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .pr {
+          margin-top: 0.5rem;
+          //   margin-right: 0.5rem;
+        }
+
+        .blender {
+          margin-top: 0.5rem;
+          //   margin-right: 1rem;
+        }
       }
     }
   }
@@ -778,10 +1015,39 @@ h6 {
       }
     }
   }
+
+  .Thanks {
+    img {
+      height: 100px;
+      width: 300px;
+    }
+  }
 }
 
 // RESPONSIVE FOR TABLET SCREEN'S.
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  .About {
+    .About-button {
+      margin-left: 1rem;
+      margin-right: 1rem;
+
+      .left,
+      .right {
+        display: flex;
+      }
+    }
+  }
+
+  .Skills {
+    .Profession {
+      .Container {
+        li {
+          width: 35rem;
+        }
+      }
+    }
+  }
+
   .Contact {
     .Text {
       height: 5rem;

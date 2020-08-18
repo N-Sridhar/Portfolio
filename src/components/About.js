@@ -6,6 +6,9 @@ import Navbar from './Navbar';
 import {updatePage, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
+import * as Icon from 'react-feather';
+import ReactTooltip from 'react-tooltip';
+import {Link} from 'react-router-dom';
 
 function About({id}) {
   const entryTime = moment();
@@ -21,7 +24,10 @@ function About({id}) {
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
-      updatePage(id, count + '. about page');
+      updatePage(
+        id,
+        count + '. about page (' + entryTime.format('h:mm:ss a') + ')'
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -30,13 +36,18 @@ function About({id}) {
     return () => {
       const exitTime = moment();
       if (id !== '') {
-        updatePageTime(entryTime, exitTime, id, count + '. about page');
+        updatePageTime(
+          entryTime,
+          exitTime,
+          id,
+          count + '. about page (' + entryTime.format('h:mm:ss a') + ')'
+        );
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const [trail, set] = useTrail(1, () => ({
+  const [trail, set] = useTrail(3, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
     config: config.wobbly,
@@ -46,25 +57,60 @@ function About({id}) {
     <>
       <Navbar show="yes" />
       <div className="About">
-        <animated.div style={trail[0]}>
-          <h2>
+        <animated.div className="Text" style={trail[0]}>
+          <h3>
             <span>
-              I am Sridhar and i expertise in visual effects.Check out the
-              services offered! To know a little more about me,keep going.
+              I'm a Web-App developer from TamilNadu, India.
               <br />
-              I am a free spirited person who thrives on enthusiasm and strives
-              to heighten the energy level of my environment.
+              I’ve always sought out opportunities and challenges that are
+              meaningful to me.
               <br />
-              My hometown is Tiruppur,TN and is close to my heart. It's the kind
-              of place that grows on you! When you have a meddlesome mind,you
-              stumble across a number of things that incites curiosity.
+              I endeavor to delight end-users through quality, performance and
+              innovation, employing best practices and technical wisdom to
+              deliver best-fit customized solutions and support.
               <br />
-              VFX is one such discovery for me and i have grown passionate of it
-              ever since.That's all folks! Thank you for your time and patience.
-              <br />
-              Well, did I mention my killer skills in football❗
+              I've never stopped engaging my passion to help others and solve
+              problems.
             </span>
-          </h2>
+          </h3>
+        </animated.div>
+        <div className="Resume">
+          <animated.div className="Resume-card" style={trail[1]}>
+            <h3>
+              <span>
+                I'll always try to deliver
+                <br /> More than Expected❗
+              </span>
+            </h3>
+            <Icon.DownloadCloud
+              className="Icon"
+              color="cyan"
+              data-tip="My Resume"
+              data-border-color="cyan"
+            />
+            <ReactTooltip place="top" border={true} />
+          </animated.div>
+        </div>
+        <animated.div className="About-button">
+          <div className="left fadeInUp" style={{animationDelay: '.2s'}}>
+            <Link to="/skills">
+              <h3>
+                <span>
+                  Check out my skills
+                  <br />
+                  and if you think
+                  <br />I can fulfill your requirements,
+                </span>
+              </h3>
+              <Icon.ChevronsRight color="yellow" />
+            </Link>
+          </div>
+          <div className="right fadeInUp" style={{animationDelay: '.3s'}}>
+            <Link to="/contact">
+              <h3>Please do reach out to me.</h3>
+              <Icon.ChevronsRight color="yellow" />
+            </Link>
+          </div>
         </animated.div>
       </div>
     </>

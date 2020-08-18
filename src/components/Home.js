@@ -10,7 +10,7 @@ import {CountContext} from '../App';
 import moment from 'moment';
 
 function Home({id}) {
-  const entry = moment();
+  const entryTime = moment();
 
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 🏡';
@@ -31,7 +31,10 @@ function Home({id}) {
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
-      updatePage(id, count + '. home page');
+      updatePage(
+        id,
+        count + '. home page (' + entryTime.format('h:mm:ss a') + ')'
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -40,7 +43,12 @@ function Home({id}) {
     return () => {
       const exit = moment();
       if (id !== '') {
-        updatePageTime(entry, exit, id, count + '. home page');
+        updatePageTime(
+          entryTime,
+          exit,
+          id,
+          count + '. home page (' + entryTime.format('h:mm:ss a') + ')'
+        );
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,7 +83,8 @@ function Home({id}) {
             <h1>
               <span>SRIDHAR</span>
             </h1>
-            <h2>Developer | Designer</h2>
+            {/* <h2>Developer | Designer</h2> */}
+            <h3>Web-App Developer</h3>
           </animated.div>
           <animated.div className="home-right" style={trail[1]}>
             <h3>Home Right | {id}</h3>
