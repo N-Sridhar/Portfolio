@@ -13,6 +13,10 @@ $dark-blue: #000a1f;
 // .Home .home-left
 $blue: #00f;
 
+// .Skills .Passion circle
+$stroke-init: #838383;
+$stroke-fill: #dde000;
+
 // .Contact .Text
 $orange-red: #ff4500;
 $salmon: #fa8072;
@@ -22,6 +26,9 @@ $vgs-linear: linear-gradient(
   rgba(255, 0, 0, 1) 15%,
   rgba(27, 255, 0, 1) 85%
 );
+
+$pale-green: rgba(85, 255, 0, 0.2);
+$sky-blue: rgba(0, 153, 255, 0.2);
 
 html {
   overflow-x: hidden;
@@ -114,6 +121,26 @@ h6 {
   flex-wrap: wrap;
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+@mixin circle-pc {
+  fill: none;
+  height: 100px;
+  stroke: $black;
+  stroke-dasharray: 310;
+  stroke-dashoffset: 310;
+  stroke-linecap: round;
+  stroke-width: 8;
+  transform: translate(5px, 5px);
+  width: 100px;
+}
+
+@mixin circle-mobile {
+  height: 85px;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
+  stroke-width: 6;
+  width: 85px;
 }
 
 .App {
@@ -209,6 +236,8 @@ h6 {
 }
 
 .Navbar {
+  // height: 6.5rem;
+
   a {
     color: inherit;
     text-decoration: none;
@@ -218,6 +247,7 @@ h6 {
     align-items: center;
     display: flex;
     flex-direction: column;
+    // height: 10px;
     padding-top: 10px;
     text-align: center;
 
@@ -254,7 +284,7 @@ h6 {
         padding: 0.3rem 0.5rem;
 
         &:hover {
-          background: $salmon;
+          background: $blue;
           border-radius: 5px;
           padding: 0.3rem 0.5rem;
         }
@@ -268,7 +298,7 @@ h6 {
     display: flex;
     flex-direction: column;
     height: calc(100% - 9rem);
-    overflow: auto;
+    overflow: hidden;
     text-align: center;
     transform: none !important;
     width: 100vw;
@@ -353,8 +383,8 @@ h6 {
       margin-left: 2.5rem;
       margin-right: 2.5rem;
 
-      h3 {
-        text-transform: uppercase;
+      img {
+        width: 550px;
       }
     }
   }
@@ -386,19 +416,112 @@ h6 {
       display: flex;
       height: 10rem;
       justify-content: center;
+      overflow: hidden;
+      text-transform: uppercase;
+
+      h3 {
+        animation-delay: 0.1s;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-name: slideIn;
+        animation-timing-function: ease-in-out;
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+
+      @keyframes slideIn {
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     }
 
     .left {
       margin-right: 1rem;
+      overflow: hidden;
+      // background-image: linear-gradient(
+      //   60deg,
+      //   $pale-green 50%,
+      //   $sky-blue 50%
+      // );
+
+      .bg {
+        animation: slide 3s ease-in-out infinite alternate;
+        background-image: linear-gradient(
+          -60deg,
+          $pale-green 50%,
+          $sky-blue 50%
+        );
+        bottom: 0;
+        left: -20%;
+        opacity: 0.5;
+        position: absolute;
+        right: -20%;
+        top: 0;
+        z-index: -1;
+      }
+
+      .bg2 {
+        animation-direction: alternate-reverse;
+        animation-duration: 4s;
+      }
+
+      .bg3 {
+        animation-duration: 5s;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(-25%);
+        }
+
+        100% {
+          transform: translateX(25%);
+        }
+      }
     }
 
     .middle {
       margin-left: 1rem;
       margin-right: 1rem;
+      // background-image: linear-gradient(
+      //   -60deg,
+      //   $pale-green 50%,
+      //   $sky-blue 50%
+      // );
     }
 
     .right {
+      // background-image: linear-gradient(
+      //   60deg,
+      //   $pale-green 50%,
+      //   $sky-blue 50%
+      // );
+      // animation: gradient 5s ease infinite;
+      // background: linear-gradient(
+      //   -45deg,
+      //   #ee76524f,
+      //   #e73c7e4d,
+      //   #23a5d54f,
+      //   #23d5ab4d
+      // );
+      // background-size: 200% 200%;
       margin-left: 1rem;
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
     }
   }
 }
@@ -506,7 +629,7 @@ h6 {
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: 8rem;
+      height: 7.5rem;
       justify-content: center;
       text-align: center;
       width: 100%;
@@ -518,63 +641,6 @@ h6 {
       justify-content: center;
       padding-bottom: 2rem;
       width: 100%;
-
-      // .Card {
-      //   background: #414141;
-      //   border-radius: 10px;
-      //   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-      //   // align-items: center;
-      //   color: $black;
-      //   display: flex;
-      //   flex-direction: column;
-      //   height: 300px;
-      //   justify-content: center;
-      //   // position: relative;
-      //   text-align: center;
-      //   width: 300px;
-      //   z-index: 999;
-
-      // .Circle {
-      //   svg {
-      //     height: 150px;
-      //     position: relative;
-      //     width: 150px;
-
-      //     circle {
-      //       fill: none;
-      //       height: 150px;
-      //       stroke: $black;
-      //       stroke-dasharray: 440;
-      //       stroke-dashoffset: 440;
-      //       stroke-linecap: round;
-      //       stroke-width: 10;
-      //       transform: translate(5px, 5px);
-      //       width: 150px;
-
-      //       &:nth-child(1) {
-      //         stroke: #838383;
-      //         stroke-dashoffset: 0;
-      //       }
-
-      //       &:nth-child(2) {
-      //         stroke: #00b6bd;
-      //         stroke-dashoffset: calc(440 - (440 * 80) / 100);
-      //       }
-      //     }
-      //   }
-
-      //   .Percent {
-      //     align-items: center;
-      //     display: flex;
-      //     height: 100%;
-      //     justify-content: center;
-      //     left: 0;
-      //     position: absolute;
-      //     top: 0;
-      //     width: 100%;
-      //   }
-      // }
-      // }
 
       li {
         font-family: Tahoma, Geneva, sans-serif;
@@ -589,10 +655,10 @@ h6 {
         }
 
         &::before {
-          background-color: rgba(54, 126, 223, 0.5);
+          background-color: rgba(54, 127, 223, 0.4);
           border: 0.5px solid rgba(0, 0, 0, 0.3);
           border-radius: 1000px;
-          box-shadow: 0 0 3px #2187e7b3;
+          box-shadow: 0 0 3px #1e92ffb3;
           content: '';
           height: 10px;
           left: 0;
@@ -605,7 +671,7 @@ h6 {
           animation-duration: 1.5s;
           animation-fill-mode: forwards;
           animation-timing-function: ease;
-          background-color: rgba(54, 126, 223, 1);
+          background-color: rgb(54, 127, 223);
           border: 0.5px solid rgba(0, 0, 0, 0.3);
           border-radius: 1000px;
           box-shadow: 0 0 3px #2187e7b3;
@@ -676,6 +742,18 @@ h6 {
             }
           }
         }
+
+        &.xd {
+          &::after {
+            animation-name: xd;
+          }
+
+          @keyframes xd {
+            to {
+              width: 70%;
+            }
+          }
+        }
       }
     }
   }
@@ -689,7 +767,7 @@ h6 {
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: 8rem;
+      height: 7.5rem;
       justify-content: center;
       text-align: center;
       width: 100%;
@@ -705,50 +783,145 @@ h6 {
       .ps,
       .ae,
       .pr,
+      .ai,
       .blender {
         -moz-box-shadow: 0 0.1px 35px $black;
         -webkit-appearance: none !important;
         -webkit-box-shadow: 0 0.1px 35px $black;
         align-items: center;
-        background: #000d1f62;
+        background: #00193d62;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgb(0, 0, 0);
         display: flex;
-        height: 15rem;
+        height: 10rem;
         justify-content: center;
-        width: (100% / 4);
+        width: (100% / 5);
+
+        svg {
+          height: 110px;
+          position: relative;
+          width: 110px;
+        }
+
+        .logo {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          position: absolute;
+        }
 
         img {
-          height: 50px;
-          width: 50px;
+          height: 45px;
+          width: 45px;
         }
       }
 
       .ps {
-        margin-left: 2rem;
-        margin-right: 1rem;
+        margin-left: 3rem;
+        margin-right: 1.5rem;
+
+        svg {
+          circle {
+            @include circle-pc;
+
+            &:nth-child(1) {
+              stroke: $react-grey;
+              stroke-dashoffset: 0;
+            }
+
+            &:nth-child(2) {
+              stroke: $stroke-fill;
+              stroke-dashoffset: calc(310 - (310 * 80) / 100);
+            }
+          }
+        }
       }
 
       .ae {
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+
+        svg {
+          circle {
+            @include circle-pc;
+
+            &:nth-child(1) {
+              stroke: $react-grey;
+              stroke-dashoffset: 0;
+            }
+
+            &:nth-child(2) {
+              stroke: $stroke-fill;
+              stroke-dashoffset: calc(310 - (310 * 70) / 100);
+            }
+          }
+        }
       }
 
       .pr {
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+
+        svg {
+          circle {
+            @include circle-pc;
+
+            &:nth-child(1) {
+              stroke: $react-grey;
+              stroke-dashoffset: 0;
+            }
+
+            &:nth-child(2) {
+              stroke: $stroke-fill;
+              stroke-dashoffset: calc(310 - (310 * 65) / 100);
+            }
+          }
+        }
+      }
+
+      .ai {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+
+        svg {
+          circle {
+            @include circle-pc;
+
+            &:nth-child(1) {
+              stroke: $react-grey;
+              stroke-dashoffset: 0;
+            }
+
+            &:nth-child(2) {
+              stroke: $stroke-fill;
+              stroke-dashoffset: calc(310 - (310 * 75) / 100);
+            }
+          }
+        }
       }
 
       .blender {
-        margin-left: 1rem;
-        margin-right: 2rem;
+        margin-left: 1.5rem;
+        margin-right: 3rem;
+
+        svg {
+          circle {
+            @include circle-pc;
+
+            &:nth-child(1) {
+              stroke: $react-grey;
+              stroke-dashoffset: 0;
+            }
+
+            &:nth-child(2) {
+              stroke: $stroke-fill;
+              stroke-dashoffset: calc(310 - (310 * 50) / 100);
+            }
+          }
+        }
       }
     }
   }
-}
-
-.Also_i_can {
-  @include base-card(35rem);
 }
 
 .Contact {
@@ -766,8 +939,8 @@ h6 {
     h2 {
       background: linear-gradient(
         to right,
-        $salmon 0%,
-        $salmon 3px,
+        $blue 0%,
+        $blue 2px,
         transparent 1px
       );
       background-repeat: repeat-x;
@@ -779,8 +952,8 @@ h6 {
       &:hover {
         background: linear-gradient(
           to right,
-          $salmon 0%,
-          $salmon 10px,
+          $blue 0%,
+          $blue 10px,
           transparent
         );
         cursor: pointer;
@@ -810,14 +983,16 @@ h6 {
   text-align: center;
 
   img {
-    height: 150px;
-    width: 425px;
+    height: 125px;
+    width: 390px;
   }
 }
 
 // RESPONSIVE FOR MOBILE SCREEN'S.
 @media screen and (max-width: 768px) {
   .Navbar {
+    height: 6rem;
+
     .Brand {
       float: left;
       margin-left: 35px;
@@ -850,6 +1025,12 @@ h6 {
         flex-direction: column;
         margin: 0;
         width: 100%;
+      }
+
+      .home-right {
+        img {
+          width: 300px;
+        }
       }
     }
 
@@ -935,7 +1116,11 @@ h6 {
       @include base-card-mobile;
 
       .Text {
-        height: 5rem;
+        height: 11rem;
+
+        h3 {
+          padding: 0 0.5rem;
+        }
       }
 
       .Container {
@@ -952,47 +1137,141 @@ h6 {
       margin-top: 1rem;
 
       .Text {
-        height: 5rem;
+        height: 7.5rem;
+
+        h3 {
+          padding: 0 0.5rem;
+        }
       }
 
       .Cards {
         flex-wrap: wrap;
+        padding-top: 1rem;
 
         .ps,
         .ae,
         .pr,
+        .ai,
         .blender {
-          height: 10rem;
+          height: 8rem;
           margin-left: 1rem;
           margin-right: 1rem;
           width: (100% / 3);
+
+          svg {
+            height: 90px;
+            width: 90px;
+          }
+
+          img {
+            height: 39px;
+            width: 39px;
+          }
         }
 
         .ps {
-          // margin-left: 1rem;
           margin-bottom: 0.5rem;
+
+          svg {
+            circle {
+              @include circle-mobile;
+
+              &:nth-child(1) {
+                stroke: $react-grey;
+                stroke-dashoffset: 0;
+              }
+
+              &:nth-child(2) {
+                stroke: $stroke-fill;
+                stroke-dashoffset: (250 - (250 * 80) / 100);
+              }
+            }
+          }
         }
 
         .ae {
-          //   margin-left: 0.5rem;
           margin-bottom: 0.5rem;
+
+          svg {
+            circle {
+              @include circle-mobile;
+
+              &:nth-child(1) {
+                stroke: $react-grey;
+                stroke-dashoffset: 0;
+              }
+
+              &:nth-child(2) {
+                stroke: $stroke-fill;
+                stroke-dashoffset: (250 - (250 * 70) / 100);
+              }
+            }
+          }
         }
 
         .pr {
+          margin-bottom: 0.5rem;
           margin-top: 0.5rem;
-          //   margin-right: 0.5rem;
+
+          svg {
+            circle {
+              @include circle-mobile;
+
+              &:nth-child(1) {
+                stroke: $react-grey;
+                stroke-dashoffset: 0;
+              }
+
+              &:nth-child(2) {
+                stroke: $stroke-fill;
+                stroke-dashoffset: (250 - (250 * 65) / 100);
+              }
+            }
+          }
+        }
+
+        .ai {
+          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
+
+          svg {
+            circle {
+              @include circle-mobile;
+
+              &:nth-child(1) {
+                stroke: $react-grey;
+                stroke-dashoffset: 0;
+              }
+
+              &:nth-child(2) {
+                stroke: $stroke-fill;
+                stroke-dashoffset: (250 - (250 * 75) / 100);
+              }
+            }
+          }
         }
 
         .blender {
           margin-top: 0.5rem;
-          //   margin-right: 1rem;
+
+          svg {
+            circle {
+              @include circle-mobile;
+
+              &:nth-child(1) {
+                stroke: $react-grey;
+                stroke-dashoffset: 0;
+              }
+
+              &:nth-child(2) {
+                stroke: $stroke-fill;
+                stroke-dashoffset: (250 - (250 * 50) / 100);
+              }
+            }
+          }
         }
       }
     }
-  }
-
-  .Also_i_can {
-    @include base-card-mobile;
   }
 
   .Contact {
@@ -1018,14 +1297,24 @@ h6 {
 
   .Thanks {
     img {
-      height: 100px;
-      width: 300px;
+      height: 90px;
+      width: 280px;
     }
   }
 }
 
 // RESPONSIVE FOR TABLET SCREEN'S.
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  .Home {
+    .Home-Main {
+      .home-right {
+        img {
+          width: 400px;
+        }
+      }
+    }
+  }
+
   .About {
     .About-button {
       margin-left: 1rem;
@@ -1043,6 +1332,43 @@ h6 {
       .Container {
         li {
           width: 35rem;
+        }
+      }
+    }
+
+    .Passion {
+      .Cards {
+        flex-wrap: wrap;
+
+        .ps,
+        .ae,
+        .pr,
+        .ai,
+        .blender {
+          width: (100% / 4);
+        }
+
+        .ps {
+          margin-bottom: 1rem;
+          margin-left: 1.5rem;
+        }
+
+        .ae {
+          margin-bottom: 1rem;
+        }
+
+        .pr {
+          margin-bottom: 1rem;
+          margin-top: 0;
+        }
+
+        .ai {
+          margin-top: 1.5rem;
+        }
+
+        .blender {
+          margin-right: 1.5rem;
+          margin-top: 1.5rem;
         }
       }
     }
@@ -1103,27 +1429,10 @@ h6 {
   }
 }
 
-.circleFill {
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-name: circleFill;
-}
-
-@keyframes circleFill {
-  from {
-    // stroke: #00b6bd;
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: calc(440 - (440 * 80) / 100);
-  }
-}
-
 // SPINNER.
 @media (prefers-reduced-motion: no-preference) {
-  .Logo {
-    animation: Brand-spin infinite 20s linear;
+  .spinner {
+    animation: Brand-spin infinite 5s linear;
   }
 }
 
