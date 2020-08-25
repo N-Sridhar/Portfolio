@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import {db, collectionName, fieldValue} from './firebase';
+import {db, storage, collectionName, fieldValue} from './firebase';
 import moment from 'moment';
 import 'moment-timezone';
 import {
@@ -93,6 +93,25 @@ const contactVisited = async (id, iconName) => {
   //   .catch((err) => console.log(err));
 };
 
+const getPDF = (id) => {
+  // const time = moment().format('h:mm:ss a');
+  const newPage = window.open();
+  storage
+    .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')
+    .getDownloadURL()
+    .then(function (url) {
+      newPage.location = url;
+      // resumeViewed(id, 'viewed - ' + time);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  // const resumeViewed = async (id, status) => {
+  //   await db.collection(collectionName).doc(id).update({'9 resume': status});
+  // };
+};
+
 export {
   collectionName,
   data,
@@ -101,4 +120,5 @@ export {
   updatePage,
   contactVisited,
   updatePageTime,
+  getPDF,
 };

@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/storage';
 import 'firebase/firebase-analytics';
 
 const firebaseConfig = {
@@ -19,8 +20,10 @@ const db = firebaseApp.firestore();
 
 const ga = firebase.analytics();
 
+const storage = firebase.storage();
+
 const collectionName = 'user';
 
 const fieldValue = firebase.firestore.FieldValue;
 
-export {db, ga, collectionName, fieldValue};
+export {db, storage, ga, collectionName, fieldValue};
