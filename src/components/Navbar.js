@@ -26,7 +26,7 @@ export const screens = [
     navDelay: '.2s',
   },
   {
-    name: 'To Find Me',
+    name: `Let’s talk`,
     link: '/contact',
     view: Contact,
     navDelay: '.3s',

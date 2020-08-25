@@ -1,7 +1,6 @@
 import Ps from '../icons/ps.svg';
 import Ae from '../icons/ae.svg';
 import Pr from '../icons/pr.svg';
-// eslint-disable-next-line
 import Ai from '../icons/ai.svg';
 import Blender from '../icons/blender.svg';
 
@@ -13,6 +12,8 @@ import Navbar from './Navbar';
 import {updatePage, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
+import {isMobile} from 'react-device-detect';
+import ReactTooltip from 'react-tooltip';
 
 function Skills({id}) {
   const entryTime = moment();
@@ -57,53 +58,122 @@ function Skills({id}) {
     config: config.wobbly,
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
+
+  const spinner = 'spinner';
+  const size = isMobile ? '40' : '50';
+
   return (
     <>
       <Navbar show="yes" />
       <div className="Skills">
         <div className="Profession">
           <animated.div className="Text" style={trail[0]}>
-            <h2>Profession.</h2>
+            {/* <h2>
+              I'm an inquisitive person and belives always keen in learning new skills
+              and technologies and yeah❗ me too belive that "Keep Learning" is
+              one of the best surviving technique.
+              <br />
+              And as far now, I learned these techs stacks 😊.
+            </h2> */}
+            <h3>
+              <span role="img" aria-label="smiling face">
+                I'm an inquisitive person and believes that "Keep Learning❗" is
+                one of the best surviving technique. So I'll always try to learn
+                new skills and technologies.
+                <br />
+                And as far now, I learned these tech stacks 😊
+              </span>
+            </h3>
           </animated.div>
           <animated.div className="Container" style={trail[1]}>
-            {/* <animated.div className="Card" style={trail[0]}>
-          <div className="Circle">
-            <svg>
-              <circle cx="70" cy="70" r="70"></circle>
-              <circle cx="70" cy="70" r="70"></circle>
-            </svg>
-            <div className="Percent">
-              <h2>82%</h2>
-              <img src={Java} alt="java" width="50px" />
-            </div>
-          </div>
-        </animated.div> */}
             <ul>
               <li className="java">Java</li>
               <li className="spring">Spring Framework</li>
               <li className="htmlcss">HTML & CSS</li>
               <li className="react">React Js</li>
               <li className="sass">SASS</li>
+              <li className="xd">Adobe XD</li>
             </ul>
           </animated.div>
         </div>
         <div className="Passion">
           <animated.div className="Text" style={trail[2]}>
-            <h2>Passion.</h2>
+            {/* <h2>Besides developing I am engrossed in designing which helped me learn things on my own</h2> */}
+            <h3>
+              <span role="img" aria-label="emoji">
+                Besides technology, I'm engrossed in visual effects and computer
+                graphics too and that kept me practicing these tools and try
+                something.
+              </span>
+            </h3>
           </animated.div>
           <animated.div className="Cards" style={trail[3]}>
-            <h3 className="ps">
-              <img src={Ps} alt="Photoshop" />
-            </h3>
-            <h3 className="ae">
-              <img src={Ae} alt="AfterEffects" />
-            </h3>
-            <h3 className="pr">
-              <img src={Pr} alt="PremierePro" />
-            </h3>
-            <h3 className="blender">
-              <img src={Blender} alt="Blender" />
-            </h3>
+            <div
+              className="ps"
+              data-tip="Adobe Photoshop"
+              data-border-color="yellow"
+            >
+              <svg className={spinner}>
+                <circle cx={size} cy={size} r={size} />
+                <circle cx={size} cy={size} r={size} />
+              </svg>
+              <div className="logo">
+                <img src={Ps} alt="Photoshop" />
+              </div>
+            </div>
+            <div
+              className="ae"
+              data-tip="Adobe AfterEffects"
+              data-border-color="yellow"
+            >
+              <svg className={spinner}>
+                <circle cx={size} cy={size} r={size} />
+                <circle cx={size} cy={size} r={size} />
+              </svg>
+              <div className="logo">
+                <img src={Ae} alt="AfterEffects" />
+              </div>
+            </div>
+            <div
+              className="pr"
+              data-tip="Adobe PremierePro"
+              data-border-color="yellow"
+            >
+              <svg className={spinner}>
+                <circle cx={size} cy={size} r={size} />
+                <circle cx={size} cy={size} r={size} />
+              </svg>
+              <div className="logo">
+                <img src={Pr} alt="PremierePro" />
+              </div>
+            </div>
+            <div
+              className="ai"
+              data-tip="Adobe Illustrator"
+              data-border-color="yellow"
+            >
+              <svg className={spinner}>
+                <circle cx={size} cy={size} r={size} />
+                <circle cx={size} cy={size} r={size} />
+              </svg>
+              <div className="logo">
+                <img src={Ai} alt="illustator" />
+              </div>
+            </div>
+            <div
+              className="blender"
+              data-tip="Blender"
+              data-border-color="yellow"
+            >
+              <svg className={spinner}>
+                <circle cx={size} cy={size} r={size} />
+                <circle cx={size} cy={size} r={size} />
+              </svg>
+              <div className="logo">
+                <img src={Blender} alt="Blender" />
+              </div>
+            </div>
+            <ReactTooltip place="top" border={true} />
           </animated.div>
         </div>
       </div>

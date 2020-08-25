@@ -3,7 +3,7 @@ import React, {useEffect, useContext, useState} from 'react';
 import {useTrail, config, animated} from 'react-spring';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
-import {updatePage, updatePageTime} from '../firestore';
+import {updatePage, updatePageTime, getPDF} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
 import * as Icon from 'react-feather';
@@ -60,17 +60,16 @@ function About({id}) {
         <animated.div className="Text" style={trail[0]}>
           <h3>
             <span>
-              I'm a Web-App developer from TamilNadu, India.
+              I’m a Web-App developer from TamilNadu, India.
               <br />
               I’ve always sought out opportunities and challenges that are
               meaningful to me.
               <br />
-              I endeavor to delight end-users through quality, performance and
-              innovation, employing best practices and technical wisdom to
-              deliver best-fit customized solutions and support.
-              <br />
-              I've never stopped engaging my passion to help others and solve
+              I’ve never stopped engaging my passion to help others and solve
               problems.
+              <br />I endeavor to delight end-users through quality, performance
+              and innovation, employing best practices and technical wisdom to
+              deliver best-fit customized solutions and support.
             </span>
           </h3>
         </animated.div>
@@ -78,15 +77,21 @@ function About({id}) {
           <animated.div className="Resume-card" style={trail[1]}>
             <h3>
               <span>
-                I'll always try to deliver
-                <br /> More than Expected❗
+                Always I'll try to deliver
+                <br />
+                More than Expected❗
               </span>
             </h3>
-            <Icon.DownloadCloud
+            <Icon.FileText
               className="Icon"
               color="cyan"
-              data-tip="My Resume"
+              data-tip="Resume"
               data-border-color="cyan"
+              onClick={() => {
+                // if (id !== '') {
+                getPDF('55');
+                // }
+              }}
             />
             <ReactTooltip place="top" border={true} />
           </animated.div>
