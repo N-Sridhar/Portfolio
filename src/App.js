@@ -51,9 +51,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div id="stars1"></div>
+      <div id="stars1"></div>
       <div id="stars2"></div>
-      <div id="stars3"></div> */}
+      <div id="stars3"></div>
       <Suspense fallback={<div />}>
         <Router>
           {/* <Navbar show="yes" /> */}
