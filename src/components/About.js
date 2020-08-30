@@ -17,9 +17,10 @@ function About({id}) {
     document.title = 'Sridhar Nallasamy 😊 • 📄';
     ga.logEvent('About Page');
     console.log('About Page');
+    window.scrollTo(0, 0);
   }, []);
 
-  const [count, setCount] = useContext(CountContext);
+  const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
 
   useEffect(() => {
     if (id !== '') {
@@ -60,7 +61,7 @@ function About({id}) {
         <animated.div className="Text" style={trail[0]}>
           <h3>
             <span>
-              I’m a Web-App developer from TamilNadu, India.
+              I’m a Web-App developer from Tiruppur, India.
               <br />
               I’ve always sought out opportunities and challenges that are
               meaningful to me.
@@ -85,16 +86,27 @@ function About({id}) {
             <Icon.FileText
               className="Icon"
               color="cyan"
-              data-tip="Resume"
+              data-tip="My Resume 📄"
               data-border-color="cyan"
               onClick={() => {
-                // if (id !== '') {
-                getPDF('55');
-                // }
+                if (id !== '') {
+                  setVisitOrder((prevCount) => prevCount + 1);
+                  getPDF(id, visitOrder);
+                }
               }}
             />
             <ReactTooltip place="top" border={true} />
           </animated.div>
+        </div>
+        <div className="Facts">
+          <animated.h3 style={trail[2]}>
+            <span role="img" aria-label="emoji">
+              -😄- Random facts,
+              <br />
+              Endlessly 🕰 I can do - Gaming 🎮, enjoying Music 🎧, drive with
+              Friends 💖, watching Sci-Fi movies/series 🎥.
+            </span>
+          </animated.h3>
         </div>
         <animated.div className="About-button">
           <div className="left fadeInUp" style={{animationDelay: '.2s'}}>

@@ -7,8 +7,8 @@ import Twitter from '../icons/twitter.svg';
 import Snapchat from '../icons/snapchat.svg';
 import LinkedIn from '../icons/linkedin.svg';
 import GitHub from '../icons/github.svg';
+import Dribbble from '../icons/dribble.svg';
 import Discord from '../icons/discord.svg';
-import Freelancer from '../icons/freelancer.svg';
 import Thanks from '../icons/thanks.png';
 
 import React, {useEffect, useState, useContext} from 'react';
@@ -16,7 +16,7 @@ import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
-import {updatePage, contactVisited, updatePageTime} from '../firestore';
+import {updatePage, checkedUpdation, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
 
@@ -29,6 +29,7 @@ function Contact({id}) {
     document.title = 'Sridhar Nallasamy 😊 • 📲';
     ga.logEvent('Contact Page');
     console.log('Contact Page');
+    window.scrollTo(0, 0);
   }, []);
 
   const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
@@ -49,7 +50,7 @@ function Contact({id}) {
       ga.logEvent(visited);
       console.log(visited);
       setVisitOrder((prevCount) => prevCount + 1);
-      contactVisited(
+      checkedUpdation(
         id,
         visitOrder + '. ' + visited + ' (' + moment().format('h:mm:ss a') + ')'
       );
@@ -144,18 +145,18 @@ function Contact({id}) {
       borderColor: '#fffc00',
     },
     {
+      name: Dribbble,
+      alt: 'Dribbble',
+      href: 'https://dribbble.com/SriLuzifer',
+      tooltip: 'Dribbble:<br/>Sridhar Nallasamy',
+      borderColor: '#ea4c89',
+    },
+    {
       name: Discord,
       alt: 'Discord',
       href: 'https://discord.com/channels/CM%E4%B9%88SriLuzifer#0791',
       tooltip: 'Discord:<br/>CM么SriLuzifer',
       borderColor: '#7289da',
-    },
-    {
-      name: Freelancer,
-      alt: 'Freelancer',
-      href: 'https://www.freelancer.in/u/SridharNallasamy',
-      tooltip: 'Freelancer:<br/>@SridharNallasamy',
-      borderColor: '#29b2fe',
     },
   ];
 

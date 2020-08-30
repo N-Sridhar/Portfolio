@@ -1,4 +1,4 @@
-import Logo from '../VGS.svg';
+import Logo from '../logo.svg';
 
 import React, {useState, useRef, lazy} from 'react';
 import * as Icon from 'react-feather';

@@ -19,6 +19,7 @@ function Home({id}) {
     document.title = 'Sridhar Nallasamy 😊 • 🏡';
     ga.logEvent('Home Page');
     console.log('Home Page');
+    window.scrollTo(0, 0);
   }, []);
 
   const {height, width} = useWindowSize();

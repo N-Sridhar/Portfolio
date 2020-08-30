@@ -22,7 +22,7 @@ const ga = firebase.analytics();
 
 const storage = firebase.storage();
 
-const collectionName = 'user';
+const collectionName = 'UAT_01';
 
 const fieldValue = firebase.firestore.FieldValue;
 

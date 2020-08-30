@@ -13,9 +13,10 @@ $dark-blue: #000a1f;
 // .Home .home-left
 $blue: #00f;
 
-// .Skills .Passion circle
+// .Skills .Passion circle Work
 $stroke-init: #838383;
 $stroke-fill: #dde000;
+$cyan: #0ff;
 
 // .Contact .Text
 $orange-red: #ff4500;
@@ -27,8 +28,9 @@ $vgs-linear: linear-gradient(
   rgba(27, 255, 0, 1) 85%
 );
 
-$pale-green: rgba(85, 255, 0, 0.2);
-$sky-blue: rgba(0, 153, 255, 0.2);
+$pale-green: rgba(85, 255, 0, 0.25);
+// $sky-blue: rgba(0, 153, 255, 0.5);
+$sky-blue: rgba(255, 0, 0, 0.25);
 
 html {
   overflow-x: hidden;
@@ -75,12 +77,12 @@ h3 {
 
 h4 {
   font-size: 14px !important;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 h5 {
   font-size: 12px !important;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 h6 {
@@ -127,8 +129,8 @@ h6 {
   fill: none;
   height: 100px;
   stroke: $black;
-  stroke-dasharray: 310;
-  stroke-dashoffset: 310;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
   stroke-linecap: round;
   stroke-width: 8;
   transform: translate(5px, 5px);
@@ -137,10 +139,47 @@ h6 {
 
 @mixin circle-mobile {
   height: 85px;
-  stroke-dasharray: 250;
-  stroke-dashoffset: 250;
+  stroke-dasharray: 225;
+  stroke-dashoffset: 225;
   stroke-width: 6;
   width: 85px;
+}
+
+@mixin hover-bg($angle) {
+  background-image: linear-gradient($angle, $pale-green 50%, $sky-blue 50%);
+}
+
+@mixin bg-animation {
+  .bg {
+    animation: slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, $pale-green 50%, $sky-blue 50%);
+    bottom: 0;
+    left: -20%;
+    opacity: 0.5;
+    position: absolute;
+    right: -20%;
+    top: 0;
+    z-index: -1;
+  }
+
+  .bg2 {
+    animation-direction: alternate-reverse;
+    animation-duration: 4s;
+  }
+
+  .bg3 {
+    animation-duration: 5s;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(-25%);
+    }
+
+    100% {
+      transform: translateX(25%);
+    }
+  }
 }
 
 .App {
@@ -297,8 +336,9 @@ h6 {
     color: $white;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 9rem);
-    overflow: hidden;
+    height: calc(100% - 5.5rem);
+    position: fixed;
+    // overflow: hidden;
     text-align: center;
     transform: none !important;
     width: 100vw;
@@ -375,6 +415,16 @@ h6 {
           transform: translate(-50%, -50%);
         }
       }
+
+      h1,
+      h2,
+      h3 {
+        transition: 0.3s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
     }
 
     .home-right {
@@ -384,7 +434,12 @@ h6 {
       margin-right: 2.5rem;
 
       img {
+        transition: 0.3s;
         width: 550px;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
   }
@@ -402,7 +457,12 @@ h6 {
     a {
       color: inherit;
       text-decoration: none;
+      transition: 0.3s;
       width: (100% / 3);
+
+      &:hover {
+        transform: scale(1.03);
+      }
     }
 
     .left,
@@ -440,46 +500,48 @@ h6 {
     .left {
       margin-right: 1rem;
       overflow: hidden;
-      // background-image: linear-gradient(
-      //   60deg,
-      //   $pale-green 50%,
-      //   $sky-blue 50%
-      // );
 
-      .bg {
-        animation: slide 3s ease-in-out infinite alternate;
-        background-image: linear-gradient(
-          -60deg,
-          $pale-green 50%,
-          $sky-blue 50%
-        );
-        bottom: 0;
-        left: -20%;
-        opacity: 0.5;
-        position: absolute;
-        right: -20%;
-        top: 0;
-        z-index: -1;
+      &:hover {
+        @include hover-bg(60deg);
       }
 
-      .bg2 {
-        animation-direction: alternate-reverse;
-        animation-duration: 4s;
-      }
+      // &:hover {
+      // @include bg-animation;
+      // .bg {
+      //   animation: slide 3s ease-in-out infinite alternate;
+      //   background-image: linear-gradient(
+      //     -60deg,
+      //     $pale-green 50%,
+      //     $sky-blue 50%
+      //   );
+      //   bottom: 0;
+      //   left: -20%;
+      //   opacity: 0.5;
+      //   position: absolute;
+      //   right: -20%;
+      //   top: 0;
+      //   z-index: -1;
+      // }
 
-      .bg3 {
-        animation-duration: 5s;
-      }
+      // .bg2 {
+      //   animation-direction: alternate-reverse;
+      //   animation-duration: 4s;
+      // }
 
-      @keyframes slide {
-        0% {
-          transform: translateX(-25%);
-        }
+      // .bg3 {
+      //   animation-duration: 5s;
+      // }
 
-        100% {
-          transform: translateX(25%);
-        }
-      }
+      // @keyframes slide {
+      //   0% {
+      //     transform: translateX(-25%);
+      //   }
+
+      //   100% {
+      //     transform: translateX(25%);
+      //   }
+      // }
+      // }
     }
 
     .middle {
@@ -490,9 +552,18 @@ h6 {
       //   $pale-green 50%,
       //   $sky-blue 50%
       // );
+
+      &:hover {
+        @include hover-bg(-60deg);
+      }
     }
 
     .right {
+      margin-left: 1rem;
+
+      &:hover {
+        @include hover-bg(60deg);
+      }
       // background-image: linear-gradient(
       //   60deg,
       //   $pale-green 50%,
@@ -507,7 +578,6 @@ h6 {
       //   #23d5ab4d
       // );
       // background-size: 200% 200%;
-      margin-left: 1rem;
 
       @keyframes gradient {
         0% {
@@ -528,10 +598,12 @@ h6 {
 
 .About {
   .Text {
-    @include base-card(15rem);
+    @include base-card(12.5rem);
     align-items: center;
     display: flex;
     flex-direction: column;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 
     h3 {
       text-align: center;
@@ -547,10 +619,10 @@ h6 {
     flex-direction: row;
     height: 5rem;
     justify-content: space-evenly;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     margin-left: 4.5rem;
     margin-right: 4.5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 
     .Resume-card {
       @include black-shadow(2px, 10px);
@@ -572,15 +644,35 @@ h6 {
     }
   }
 
+  .Facts {
+    @include base-card(5rem);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    margin-top: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    h4 {
+      text-align: center;
+
+      span {
+        line-height: 28px;
+      }
+    }
+  }
+
   .About-button {
     display: flex;
     // flex-direction: row;
-    height: 10rem;
+    height: fit-content;
     justify-content: space-evenly;
     margin-bottom: 2rem;
     margin-left: 4.5rem;
     margin-right: 4.5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 
     a {
       align-items: center;
@@ -588,7 +680,12 @@ h6 {
       display: flex;
       justify-content: space-around;
       text-decoration: none;
+      transition: 0.3s;
       width: 100%;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
 
     .left,
@@ -599,7 +696,7 @@ h6 {
       border-radius: 10px;
       cursor: pointer;
       display: flex;
-      height: 10rem;
+      height: 8rem;
       width: (100% / 3);
     }
 
@@ -613,10 +710,18 @@ h6 {
           line-height: 28px;
         }
       }
+
+      &:hover {
+        @include hover-bg(60deg);
+      }
     }
 
     .right {
       margin-right: 5rem;
+
+      &:hover {
+        @include hover-bg(-60deg);
+      }
     }
   }
 }
@@ -633,13 +738,17 @@ h6 {
       justify-content: center;
       text-align: center;
       width: 100%;
+
+      span {
+        line-height: 25px;
+      }
     }
 
     .Container {
       align-items: center;
       display: flex;
       justify-content: center;
-      padding-bottom: 2rem;
+      padding-bottom: 1.5rem;
       width: 100%;
 
       li {
@@ -651,7 +760,7 @@ h6 {
         width: 45rem;
 
         &:first-child {
-          margin: 25px 0;
+          margin: 15px 0;
         }
 
         &::before {
@@ -771,6 +880,10 @@ h6 {
       justify-content: center;
       text-align: center;
       width: 100%;
+
+      span {
+        line-height: 25px;
+      }
     }
 
     .Cards {
@@ -790,17 +903,18 @@ h6 {
         -webkit-box-shadow: 0 0.1px 35px $black;
         align-items: center;
         background: #00193d62;
-        border-radius: 10px;
+        border-radius: 20px;
         box-shadow: 0 2px 8px rgb(0, 0, 0);
         display: flex;
-        height: 10rem;
+        height: 8rem;
         justify-content: center;
+        transition: 0.4s;
         width: (100% / 5);
 
         svg {
-          height: 110px;
+          height: 100px;
           position: relative;
-          width: 110px;
+          width: 100px;
         }
 
         .logo {
@@ -811,8 +925,12 @@ h6 {
         }
 
         img {
-          height: 45px;
-          width: 45px;
+          height: 40px;
+          width: 40px;
+        }
+
+        &:hover {
+          transform: scale(1.15);
         }
       }
 
@@ -831,7 +949,7 @@ h6 {
 
             &:nth-child(2) {
               stroke: $stroke-fill;
-              stroke-dashoffset: calc(310 - (310 * 80) / 100);
+              stroke-dashoffset: calc(300 - (300 * 75) / 100);
             }
           }
         }
@@ -852,7 +970,7 @@ h6 {
 
             &:nth-child(2) {
               stroke: $stroke-fill;
-              stroke-dashoffset: calc(310 - (310 * 70) / 100);
+              stroke-dashoffset: calc(300 - (300 * 65) / 100);
             }
           }
         }
@@ -873,7 +991,7 @@ h6 {
 
             &:nth-child(2) {
               stroke: $stroke-fill;
-              stroke-dashoffset: calc(310 - (310 * 65) / 100);
+              stroke-dashoffset: calc(300 - (300 * 60) / 100);
             }
           }
         }
@@ -894,7 +1012,7 @@ h6 {
 
             &:nth-child(2) {
               stroke: $stroke-fill;
-              stroke-dashoffset: calc(310 - (310 * 75) / 100);
+              stroke-dashoffset: calc(300 - (300 * 70) / 100);
             }
           }
         }
@@ -915,8 +1033,124 @@ h6 {
 
             &:nth-child(2) {
               stroke: $stroke-fill;
-              stroke-dashoffset: calc(310 - (310 * 50) / 100);
+              stroke-dashoffset: calc(300 - (300 * 45) / 100);
             }
+          }
+        }
+      }
+    }
+  }
+
+  .Works {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin-bottom: 2rem;
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+
+    .Development {
+      @include base-card(fit-content);
+      width: (100% / 2.5);
+
+      .Text {
+        align-content: center;
+        background: #36363660;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        height: 2rem;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .Cards {
+        display: grid;
+        place-items: center;
+      }
+
+      .Bm {
+        background: $white;
+        border-radius: 15px;
+        display: flex;
+        height: 8rem;
+        margin: 1rem;
+        overflow: hidden;
+        padding: 0.5rem;
+        position: relative;
+        transition: 0.4s ease-out;
+        width: 8rem;
+
+        &:hover {
+          // transform: translateY(-20px);
+
+          &::before {
+            opacity: 1;
+          }
+
+          img {
+            transform: rotateZ(43deg);
+          }
+
+          .Info {
+            opacity: 1;
+            transform: translateY(18px);
+          }
+        }
+
+        &::before {
+          background: rgba($black, 0.825);
+          border-radius: 15px;
+          content: '';
+          display: block;
+          height: 100%;
+          left: 0;
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          transition: 0.5s;
+          width: 100%;
+          z-index: 2;
+        }
+
+        img {
+          border-radius: 15px;
+          height: 100%;
+          left: 0;
+          object-fit: cover;
+          position: absolute;
+          top: 0;
+          transition: 0.4s ease-out;
+          width: 100%;
+        }
+
+        .Info {
+          color: $cyan;
+          opacity: 0;
+          position: relative;
+          text-align: center;
+          transform: translateY(45px);
+          transition: 0.5s;
+          width: 100%;
+          z-index: 3;
+
+          h2 {
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+          }
+
+          h3 {
+            margin-top: 8px;
+          }
+
+          .button {
+            color: $cyan;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.4s ease;
           }
         }
       }
@@ -973,7 +1207,12 @@ h6 {
 
     & > a {
       img {
+        transition: 0.3s;
         width: 45px;
+
+        &:hover {
+          transform: scale(1.15);
+        }
       }
     }
   }
@@ -1088,6 +1327,12 @@ h6 {
       }
     }
 
+    .Facts {
+      @include base-card-mobile;
+      height: 8.5rem;
+      margin-top: 1rem;
+    }
+
     .About-button {
       @include base-card-mobile;
       height: fit-content;
@@ -1153,19 +1398,19 @@ h6 {
         .pr,
         .ai,
         .blender {
-          height: 8rem;
+          height: 6.5rem;
           margin-left: 1rem;
           margin-right: 1rem;
           width: (100% / 3);
 
           svg {
-            height: 90px;
-            width: 90px;
+            height: 80px;
+            width: 80px;
           }
 
           img {
-            height: 39px;
-            width: 39px;
+            height: 35px;
+            width: 35px;
           }
         }
 
@@ -1183,7 +1428,7 @@ h6 {
 
               &:nth-child(2) {
                 stroke: $stroke-fill;
-                stroke-dashoffset: (250 - (250 * 80) / 100);
+                stroke-dashoffset: (225 - (225 * 75) / 100);
               }
             }
           }
@@ -1203,7 +1448,7 @@ h6 {
 
               &:nth-child(2) {
                 stroke: $stroke-fill;
-                stroke-dashoffset: (250 - (250 * 70) / 100);
+                stroke-dashoffset: (225 - (225 * 65) / 100);
               }
             }
           }
@@ -1224,7 +1469,7 @@ h6 {
 
               &:nth-child(2) {
                 stroke: $stroke-fill;
-                stroke-dashoffset: (250 - (250 * 65) / 100);
+                stroke-dashoffset: (225 - (225 * 60) / 100);
               }
             }
           }
@@ -1245,7 +1490,7 @@ h6 {
 
               &:nth-child(2) {
                 stroke: $stroke-fill;
-                stroke-dashoffset: (250 - (250 * 75) / 100);
+                stroke-dashoffset: (225 - (225 * 70) / 100);
               }
             }
           }
@@ -1265,11 +1510,20 @@ h6 {
 
               &:nth-child(2) {
                 stroke: $stroke-fill;
-                stroke-dashoffset: (250 - (250 * 50) / 100);
+                stroke-dashoffset: (225 - (225 * 45) / 100);
               }
             }
           }
         }
+      }
+    }
+
+    .Works {
+      margin-left: 1rem;
+      margin-right: 1rem;
+
+      .Development {
+        width: 100%;
       }
     }
   }

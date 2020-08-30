@@ -7,18 +7,30 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import {data, createDoc, updateCoords} from './firestore';
+import {data, createDoc, updateEntry, updateCoords} from './firestore';
 
 export const CountContext = React.createContext();
 export const SetCountContext = React.createContext();
 
 function App() {
   const [id, setId] = useState('');
+  const [oldData, setOldData] = useState('');
 
   useEffect(() => {
+    if (localStorage.getItem('id') !== null) {
+      setOldData(
+        localStorage.getItem('timestamp') + ' -- ' + localStorage.getItem('id')
+      );
+    }
     createDoc(data, setId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (id !== '' && oldData !== '') {
+      updateEntry(id, oldData);
+    }
+  }, [id, oldData]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {

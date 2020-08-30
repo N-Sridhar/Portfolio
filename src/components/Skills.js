@@ -3,17 +3,19 @@ import Ae from '../icons/ae.svg';
 import Pr from '../icons/pr.svg';
 import Ai from '../icons/ai.svg';
 import Blender from '../icons/blender.svg';
+import Bienes from '../icons/bienes_mart.svg';
 
 import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
 import {animated} from 'react-spring';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
-import {updatePage, updatePageTime} from '../firestore';
+import {updatePage, checkedUpdation, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
 import {isMobile} from 'react-device-detect';
 import ReactTooltip from 'react-tooltip';
+import * as Icon from 'react-feather';
 
 function Skills({id}) {
   const entryTime = moment();
@@ -22,9 +24,10 @@ function Skills({id}) {
     document.title = 'Sridhar Nallasamy 😊 • 👨🏻‍💻';
     ga.logEvent('Skills Page');
     console.log('Skills Page');
+    window.scrollTo(0, 0);
   }, []);
 
-  const [count, setCount] = useContext(CountContext);
+  const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
 
   useEffect(() => {
     if (id !== '') {
@@ -60,7 +63,7 @@ function Skills({id}) {
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
 
   const spinner = 'spinner';
-  const size = isMobile ? '40' : '50';
+  const size = isMobile ? '35' : '45';
 
   return (
     <>
@@ -175,6 +178,44 @@ function Skills({id}) {
             </div>
             <ReactTooltip place="top" border={true} />
           </animated.div>
+        </div>
+        <div className="Works">
+          <div className="Development">
+            <div className="Text">
+              <h4>M Y - B U I L D</h4>
+            </div>
+            <div className="Cards">
+              <div className="Bm">
+                <img src={Bienes} alt="bienes mart" />
+                <div className="Info">
+                  <h2>Bienes Mart</h2>
+                  <h4>Ecommerce site</h4>
+                  <a
+                    href="http://bienesmart.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      if (id !== '') {
+                        setVisitOrder((prevCount) => prevCount + 1);
+                        checkedUpdation(
+                          id,
+                          visitOrder +
+                            '. Bienes Mart (' +
+                            moment().format('h:mm:ss a') +
+                            ')'
+                        );
+                      }
+                    }}
+                  >
+                    <Icon.ArrowRightCircle
+                      className="button"
+                      size={!isMobile ? '32px' : '40px'}
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
