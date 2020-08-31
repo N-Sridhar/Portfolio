@@ -23,7 +23,7 @@ function Skills({id}) {
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 👨🏻‍💻';
     ga.logEvent('Skills Page');
-    console.log('Skills Page');
+    // console.log('Skills Page');
     window.scrollTo(0, 0);
   }, []);
 
@@ -34,7 +34,7 @@ function Skills({id}) {
       setCount((prevCount) => prevCount + 1);
       updatePage(
         id,
-        count + '. skills page (' + entryTime.format('h:mm:ss a') + ')'
+        count + '. Skills (' + entryTime.format('h:mm:ss a') + ')'
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +48,7 @@ function Skills({id}) {
           entryTime,
           exitTime,
           id,
-          count + '. skills page (' + entryTime.format('h:mm:ss a') + ')'
+          count + '. Skills (' + entryTime.format('h:mm:ss a') + ')'
         );
       }
     };

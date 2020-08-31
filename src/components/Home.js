@@ -18,7 +18,7 @@ function Home({id}) {
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 🏡';
     ga.logEvent('Home Page');
-    console.log('Home Page');
+    // console.log('Home Page');
     window.scrollTo(0, 0);
   }, []);
 
@@ -35,10 +35,7 @@ function Home({id}) {
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
-      updatePage(
-        id,
-        count + '. home page (' + entryTime.format('h:mm:ss a') + ')'
-      );
+      updatePage(id, count + '. Home (' + entryTime.format('h:mm:ss a') + ')');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -51,7 +48,7 @@ function Home({id}) {
           entryTime,
           exit,
           id,
-          count + '. home page (' + entryTime.format('h:mm:ss a') + ')'
+          count + '. Home (' + entryTime.format('h:mm:ss a') + ')'
         );
       }
     };

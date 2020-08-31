@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {db, storage, collectionName, fieldValue} from './firebase';
 import moment from 'moment';
 import 'moment-timezone';
@@ -13,6 +14,7 @@ import {
   engineName,
   engineVersion,
 } from 'react-device-detect';
+import axios from 'axios';
 
 const dateTime = moment().format('ddd, D-MM-YYYY | h:mm:ss a');
 const zone = moment.tz.guess();
@@ -22,7 +24,7 @@ const dateTimeZone = dateTime + ' | ' + zName;
 const data = {
   '0 Entry': 'New Visitor',
   '1 date & time': dateTimeZone,
-  '2 coords': isMobile ? 'n/a' : 'yet to be updated.',
+  '2 ip info': 'yet to be updated.',
   '3 device': deviceType,
   '4 model': !isMobile ? 'PC / Laptop' : mobileVendor + ' - ' + mobileModel,
   '5 os': osName + ' - ' + osVersion,
@@ -34,6 +36,7 @@ const data = {
     engineName +
     ' - ' +
     engineVersion,
+  '9 created': fieldValue.serverTimestamp(),
 };
 
 const createDoc = async (data, setId) => {
@@ -44,10 +47,6 @@ const createDoc = async (data, setId) => {
       localStorage.setItem('id', res.id);
       localStorage.setItem('timestamp', dateTimeZone);
       setId(res.id);
-      console.log('Thank you for visiting my site 😊.');
-      console.log(
-        '❗If you have any thoughts or qurires or doubts, please go to the "📲 Lets Talk" page & reach me.'
-      );
     });
 };
 
@@ -59,13 +58,80 @@ const updateEntry = async (id, data) => {
     .catch((err) => console.log(err));
 };
 
-const updateCoords = async (id, coords) => {
-  await db
-    .collection(collectionName)
-    .doc(id)
-    .update({'2 coords': coords})
-    .then((res) => console.log('coords updated.'))
-    .catch((err) => console.log(err));
+const ipInfo = async (id) => {
+  axios
+    .get(
+      'https://find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com/iplocation?apikey=873dbe322aea47f89dcf729dcc8f60e8',
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host':
+            'find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com',
+          'x-rapidapi-key':
+            '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
+        },
+      }
+    )
+    .then((res) => {
+      db.collection(collectionName)
+        .doc(id)
+        .update({
+          '2 ip info': fieldValue.arrayUnion(res.data.ip),
+        });
+
+      axios
+        .get(
+          `https://apility-io-ip-geolocation-v1.p.rapidapi.com/${res.data.ip}`,
+          {
+            method: 'GET',
+            headers: {
+              'x-rapidapi-host': 'apility-io-ip-geolocation-v1.p.rapidapi.com',
+              'x-rapidapi-key':
+                '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
+              accept: 'application/json',
+            },
+          }
+        )
+        .then((res) => {
+          const addr = res.data.ip.address;
+          const merchant = res.data.ip.as.name;
+          const city = res.data.ip.city_names.en;
+          const region = res.data.ip.region_names.en;
+          const country = res.data.ip.country_names.en;
+
+          const ipdata = {
+            ip: addr + ' - ' + merchant.split('.')[0],
+            loc: city + ' - ' + region + ' - ' + country,
+          };
+
+          db.collection(collectionName)
+            .doc(id)
+            .update({
+              // '2 ip info': fieldValue.arrayUnion(ipdata['ip'], ipdata['loc']),
+              '2 ip info': fieldValue.arrayRemove(addr),
+            })
+            .then(
+              db
+                .collection(collectionName)
+                .doc(id)
+                .update({
+                  '2 ip info': fieldValue.arrayUnion(
+                    ipdata['ip'],
+                    ipdata['loc']
+                  ),
+                })
+            )
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const updatePage = async (id, pageName) => {
@@ -73,7 +139,7 @@ const updatePage = async (id, pageName) => {
     .collection(collectionName)
     .doc(id)
     .update({'7 screens:': fieldValue.arrayUnion(pageName)})
-    .then((res) => console.log('updated - page'))
+    // .then((res) => console.log('updated - page'))
     .catch((err) => console.log(err));
 };
 
@@ -91,7 +157,7 @@ const updatePageTime = async (startTime, endTime, id, pageName) => {
         .collection(collectionName)
         .doc(id)
         .update({'7 screens:': fieldValue.arrayUnion(pageName + ' - ' + time)})
-        .then((res) => console.log('updated with time'))
+        // .then((res) => console.log('updated with time'))
         .catch((err) => console.log(err))
     );
 };
@@ -101,7 +167,7 @@ const checkedUpdation = async (id, item) => {
     .collection(collectionName)
     .doc(id)
     .update({'8 checked:': fieldValue.arrayUnion(item)})
-    .then((res) => console.log('updated - item'))
+    // .then((res) => console.log('updated - item'))
     .catch((err) => console.log(err));
 };
 
@@ -137,7 +203,7 @@ export {
   data,
   createDoc,
   updateEntry,
-  updateCoords,
+  ipInfo,
   updatePage,
   checkedUpdation,
   updatePageTime,

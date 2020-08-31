@@ -7,7 +7,13 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import {data, createDoc, updateEntry, updateCoords} from './firestore';
+import {
+  data,
+  createDoc,
+  updateEntry,
+  // updateCoords,
+  ipInfo,
+} from './firestore';
 
 export const CountContext = React.createContext();
 export const SetCountContext = React.createContext();
@@ -27,24 +33,30 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (id !== '') {
+      ipInfo(id);
+    }
+  }, [id]);
+
+  useEffect(() => {
     if (id !== '' && oldData !== '') {
       updateEntry(id, oldData);
     }
   }, [id, oldData]);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      const latLong =
-        'lat: ' +
-        position.coords.latitude +
-        ' | long: ' +
-        position.coords.longitude;
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     const latLong =
+  //       'lat: ' +
+  //       position.coords.latitude +
+  //       ' | long: ' +
+  //       position.coords.longitude;
 
-      if ((latLong !== '') & (id !== '')) {
-        updateCoords(id, latLong);
-      }
-    });
-  }, [id]);
+  //     if ((latLong !== '') & (id !== '')) {
+  //       updateCoords(id, latLong);
+  //     }
+  //   });
+  // }, [id]);
 
   const [count, setCount] = useState(0);
   const [visitOrder, setVisitOrder] = useState(0);

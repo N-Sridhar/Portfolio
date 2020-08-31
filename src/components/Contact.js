@@ -28,7 +28,7 @@ function Contact({id}) {
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 📲';
     ga.logEvent('Contact Page');
-    console.log('Contact Page');
+    // console.log('Contact Page');
     window.scrollTo(0, 0);
   }, []);
 
@@ -39,7 +39,7 @@ function Contact({id}) {
       setCount((prevCount) => prevCount + 1);
       updatePage(
         id,
-        count + '. contact page (' + entryTime.format('h:mm:ss a') + ')'
+        count + '. Contact (' + entryTime.format('h:mm:ss a') + ')'
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +48,7 @@ function Contact({id}) {
   useEffect(() => {
     if (visited !== null) {
       ga.logEvent(visited);
-      console.log(visited);
+      // console.log(visited);
       setVisitOrder((prevCount) => prevCount + 1);
       checkedUpdation(
         id,
@@ -66,7 +66,7 @@ function Contact({id}) {
           entryTime,
           exitTime,
           id,
-          count + '. contact page (' + entryTime.format('h:mm:ss a') + ')'
+          count + '. Contact (' + entryTime.format('h:mm:ss a') + ')'
         );
       }
     };
