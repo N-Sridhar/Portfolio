@@ -183,19 +183,31 @@ const getPDF = (id, count) => {
   h1.style.color = 'white';
   newPage.document.body.appendChild(h1);
 
-  storage
-    .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')
-    .getDownloadURL()
-    .then(function (url) {
-      newPage.location = url;
+  db.collection('resume')
+    .doc('drive')
+    .onSnapshot((snap) => {
       checkedUpdation(
         id,
         count + '. Resume (' + moment().format('h:mm:ss a') + ')'
       );
-    })
-    .catch((err) => {
-      console.log(err);
+      newPage.location = snap.data().link;
     });
+
+  // storage
+  //   .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')
+  //   .getDownloadURL()
+  //   .then(function (url) {
+  //     newPage.location = url;
+  //     checkedUpdation(
+  //       id,
+  //       count + '. Resume (' + moment().format('h:mm:ss a') + ')'
+  //     );
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // newPage.location =
+  //   'https://drive.google.com/file/d/139Q-LFK-rh_HtQyuWSN_X7yTsMi53CRE/view?usp=sharing';
 };
 
 export {

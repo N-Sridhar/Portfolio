@@ -191,7 +191,7 @@ function Skills({id}) {
                   <h2>Bienes Mart</h2>
                   <h4>Ecommerce site</h4>
                   <a
-                    href="http://bienesmart.in/"
+                    href="https://bienesmart.in/"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {

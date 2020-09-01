@@ -698,10 +698,6 @@ h6 {
       display: flex;
       height: 8rem;
       width: (100% / 3);
-    }
-
-    .left {
-      margin-left: 5rem;
 
       h3 {
         text-align: center;
@@ -710,6 +706,10 @@ h6 {
           line-height: 28px;
         }
       }
+    }
+
+    .left {
+      margin-left: 5rem;
 
       &:hover {
         @include hover-bg(60deg);

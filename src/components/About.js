@@ -80,6 +80,7 @@ function About({id}) {
                 More than Expected❗
               </span>
             </h3>
+            {/* <a href="" target="_blank"> */}
             <Icon.FileText
               className="Icon"
               color="cyan"
@@ -92,6 +93,7 @@ function About({id}) {
                 }
               }}
             />
+            {/* </a> */}
             <ReactTooltip place="top" border={true} />
           </animated.div>
         </div>
@@ -110,10 +112,13 @@ function About({id}) {
             <Link to="/skills">
               <h3>
                 <span>
-                  Check out my skills
+                  {/* Check out my skills
                   <br />
                   and if you think
-                  <br />I can fulfill your requirements,
+                  <br />I can fulfill your requirements, */}
+                  Check out my skills and abilities,
+                  <br />
+                  to know whether I can fulfill your requirements
                 </span>
               </h3>
               <Icon.ChevronsRight color="yellow" />
@@ -121,7 +126,13 @@ function About({id}) {
           </div>
           <div className="right fadeInUp" style={{animationDelay: '.3s'}}>
             <Link to="/contact">
-              <h3>Please do reach out to me.</h3>
+              <h3>
+                <span>
+                  Have a question or want to Work together?
+                  <br />
+                  Reach me out❗
+                </span>
+              </h3>
               <Icon.ChevronsRight color="yellow" />
             </Link>
           </div>
