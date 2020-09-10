@@ -4,6 +4,10 @@ import Pr from '../icons/pr.svg';
 import Ai from '../icons/ai.svg';
 import Blender from '../icons/blender.svg';
 import Bienes from '../icons/bienes_mart.svg';
+import Firebase from '../icons/firebase.svg';
+import Xd from '../icons/xd.svg';
+import Gitlab from '../icons/gitlab.svg';
+import Docker from '../icons/docker.svg';
 
 import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
@@ -65,26 +69,32 @@ function Skills({id}) {
   const spinner = 'spinner';
   const size = isMobile ? '35' : '45';
 
+  const Tools = [
+    {name: 'Firebase', icon: Firebase, text: 'Firebase'},
+    {name: 'Xd', icon: Xd, text: 'Adobe XD'},
+    {name: 'Gitlab', icon: Gitlab, text: 'GitLab'},
+    {name: 'Docker', icon: Docker, text: 'Docker'},
+  ];
+
   return (
     <>
       <Navbar show="yes" />
       <div className="Skills">
         <div className="Profession">
           <animated.div className="Text" style={trail[0]}>
-            {/* <h2>
-              I'm an inquisitive person and belives always keen in learning new skills
-              and technologies and yeah❗ me too belive that "Keep Learning" is
-              one of the best surviving technique.
-              <br />
-              And as far now, I learned these techs stacks 😊.
-            </h2> */}
             <h3>
               <span role="img" aria-label="smiling face">
-                I'm an inquisitive person and believes that "Keep Learning❗" is
+                {/* I'm an inquisitive person and believes that "Keep Learning❗" is
                 one of the best surviving technique. So I'll always try to learn
-                new skills and technologies.
+                new skills and technologies. */}
+                I'm an inquisitive person and believe that "Keep learning❗" is
+                one of the best surviving techniques.
                 <br />
-                And as far now, I learned these tech stacks 😊
+                This idea kept me engaging myself in learning new skills and
+                technologies.
+                <br />
+                {/* And as far now, I learned these tech stacks 😊 */}
+                Below I have enlisted my current mastery on tech stack 😊
               </span>
             </h3>
           </animated.div>
@@ -95,18 +105,30 @@ function Skills({id}) {
               <li className="htmlcss">HTML & CSS</li>
               <li className="react">React Js</li>
               <li className="sass">SASS</li>
-              <li className="xd">Adobe XD</li>
             </ul>
+          </animated.div>
+          <animated.div className="Tools" style={trail[2]}>
+            <h3>PLATFORM / TOOL</h3>
+            <div className="Tool">
+              {Tools.map((Tool, i) => (
+                <div className={Tool.name} key={i}>
+                  <img src={Tool.icon} alt={Tool.name} />
+                  <h4>{Tool.text}</h4>
+                </div>
+              ))}
+            </div>
           </animated.div>
         </div>
         <div className="Passion">
           <animated.div className="Text" style={trail[2]}>
-            {/* <h2>Besides developing I am engrossed in designing which helped me learn things on my own</h2> */}
             <h3>
               <span role="img" aria-label="emoji">
-                Besides technology, I'm engrossed in visual effects and computer
+                {/* Besides technology, I'm engrossed in visual effects and computer
                 graphics too and that kept me practicing these tools and try
-                something.
+                something. */}
+                Besides technology, I'm engrossed in visual effects and computer
+                graphics which cheered me up to explore and practice these tools
+                and try something new.
               </span>
             </h3>
           </animated.div>
@@ -189,9 +211,9 @@ function Skills({id}) {
                 <img src={Bienes} alt="bienes mart" />
                 <div className="Info">
                   <h2>Bienes Mart</h2>
-                  <h4>Ecommerce site</h4>
+                  <h4>Apparel & Clothing</h4>
                   <a
-                    href="https://bienesmart.in/"
+                    href="https://bienes-mart.web.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {

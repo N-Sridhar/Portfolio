@@ -22,9 +22,9 @@ const ga = firebase.analytics();
 
 const storage = firebase.storage();
 
-// const collectionName = 'dev';
+const collectionName = 'dev';
 // const collectionName = 'UAT_01';
-const collectionName = 'UAT_02';
+// const collectionName = 'UAT_02';
 
 const fieldValue = firebase.firestore.FieldValue;
 
