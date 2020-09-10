@@ -116,9 +116,9 @@ function About({id}) {
                   <br />
                   and if you think
                   <br />I can fulfill your requirements, */}
-                  Check out my skills and abilities,
+                  Check out my area of,
                   <br />
-                  to know whether I can fulfill your requirements
+                  Expertise and Works.
                 </span>
               </h3>
               <Icon.ChevronsRight color="yellow" />
@@ -128,7 +128,7 @@ function About({id}) {
             <Link to="/contact">
               <h3>
                 <span>
-                  Have a question or want to Work together?
+                  Want to Work together?
                   <br />
                   Reach me out❗
                 </span>
