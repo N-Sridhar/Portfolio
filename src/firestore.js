@@ -40,104 +40,104 @@ const data = {
 };
 
 const createDoc = async (data, setId) => {
-  // await db
-  //   .collection(collectionName)
-  //   .add(data)
-  //   .then((res) => {
-  //     localStorage.setItem('id', res.id);
-  //     localStorage.setItem('timestamp', dateTimeZone);
-  //     setId(res.id);
-  //   });
+  await db
+    .collection(collectionName)
+    .add(data)
+    .then((res) => {
+      localStorage.setItem('id', res.id);
+      localStorage.setItem('timestamp', dateTimeZone);
+      setId(res.id);
+    });
 };
 
 const updateEntry = async (id, data) => {
-  // await db
-  //   .collection(collectionName)
-  //   .doc(id)
-  //   .update({'0 Entry': data})
-  //   .catch((err) => console.log(err));
+  await db
+    .collection(collectionName)
+    .doc(id)
+    .update({'0 Entry': data})
+    .catch((err) => console.log(err));
 };
 
 const ipInfo = async (id) => {
-  // axios
-  //   .get(
-  //     'https://find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com/iplocation?apikey=873dbe322aea47f89dcf729dcc8f60e8',
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         'x-rapidapi-host':
-  //           'find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com',
-  //         'x-rapidapi-key':
-  //           '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
-  //       },
-  //     }
-  //   )
-  //   .then((res) => {
-  //     db.collection(collectionName)
-  //       .doc(id)
-  //       .update({
-  //         '2 ip info': fieldValue.arrayUnion(res.data.ip),
-  //       });
-  //     axios
-  //       .get(
-  //         `https://apility-io-ip-geolocation-v1.p.rapidapi.com/${res.data.ip}`,
-  //         {
-  //           method: 'GET',
-  //           headers: {
-  //             'x-rapidapi-host': 'apility-io-ip-geolocation-v1.p.rapidapi.com',
-  //             'x-rapidapi-key':
-  //               '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
-  //             accept: 'application/json',
-  //           },
-  //         }
-  //       )
-  //       .then((res) => {
-  //         const addr = res.data.ip.address;
-  //         const merchant = res.data.ip.as.name;
-  //         const city = res.data.ip.city_names.en;
-  //         const region = res.data.ip.region_names.en;
-  //         const country = res.data.ip.country_names.en;
-  //         const ipdata = {
-  //           ip: addr + ' - ' + merchant.split('.')[0],
-  //           loc: city + ' - ' + region + ' - ' + country,
-  //         };
-  //         db.collection(collectionName)
-  //           .doc(id)
-  //           .update({
-  //             // '2 ip info': fieldValue.arrayUnion(ipdata['ip'], ipdata['loc']),
-  //             '2 ip info': fieldValue.arrayRemove(addr),
-  //           })
-  //           .then(
-  //             db
-  //               .collection(collectionName)
-  //               .doc(id)
-  //               .update({
-  //                 '2 ip info': fieldValue.arrayUnion(
-  //                   ipdata['ip'],
-  //                   ipdata['loc']
-  //                 ),
-  //               })
-  //           )
-  //           .catch((err) => {
-  //             console.log(err);
-  //           });
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  axios
+    .get(
+      'https://find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com/iplocation?apikey=873dbe322aea47f89dcf729dcc8f60e8',
+      {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host':
+            'find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com',
+          'x-rapidapi-key':
+            '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
+        },
+      }
+    )
+    .then((res) => {
+      db.collection(collectionName)
+        .doc(id)
+        .update({
+          '2 ip info': fieldValue.arrayUnion(res.data.ip),
+        });
+      axios
+        .get(
+          `https://apility-io-ip-geolocation-v1.p.rapidapi.com/${res.data.ip}`,
+          {
+            method: 'GET',
+            headers: {
+              'x-rapidapi-host': 'apility-io-ip-geolocation-v1.p.rapidapi.com',
+              'x-rapidapi-key':
+                '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
+              accept: 'application/json',
+            },
+          }
+        )
+        .then((res) => {
+          const addr = res.data.ip.address;
+          const merchant = res.data.ip.as.name;
+          const city = res.data.ip.city_names.en;
+          const region = res.data.ip.region_names.en;
+          const country = res.data.ip.country_names.en;
+          const ipdata = {
+            ip: addr + ' - ' + merchant.split('.')[0],
+            loc: city + ' - ' + region + ' - ' + country,
+          };
+          db.collection(collectionName)
+            .doc(id)
+            .update({
+              // '2 ip info': fieldValue.arrayUnion(ipdata['ip'], ipdata['loc']),
+              '2 ip info': fieldValue.arrayRemove(addr),
+            })
+            .then(
+              db
+                .collection(collectionName)
+                .doc(id)
+                .update({
+                  '2 ip info': fieldValue.arrayUnion(
+                    ipdata['ip'],
+                    ipdata['loc']
+                  ),
+                })
+            )
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 const updatePage = async (id, pageName) => {
-  // await db
-  //   .collection(collectionName)
-  //   .doc(id)
-  //   .update({'7 screens:': fieldValue.arrayUnion(pageName)})
-  //   // .then((res) => console.log('updated - page'))
-  //   .catch((err) => console.log(err));
+  await db
+    .collection(collectionName)
+    .doc(id)
+    .update({'7 screens:': fieldValue.arrayUnion(pageName)})
+    // .then((res) => console.log('updated - page'))
+    .catch((err) => console.log(err));
 };
 
 const updatePageTime = async (startTime, endTime, id, pageName) => {
@@ -145,27 +145,27 @@ const updatePageTime = async (startTime, endTime, id, pageName) => {
   const time =
     sec <= 60 ? sec + 's' : (sec - (sec %= 60)) / 60 + 'm ' + sec + 's';
 
-  // await db
-  //   .collection(collectionName)
-  //   .doc(id)
-  //   .update({'7 screens:': fieldValue.arrayRemove(pageName)})
-  //   .then(
-  //     await db
-  //       .collection(collectionName)
-  //       .doc(id)
-  //       .update({'7 screens:': fieldValue.arrayUnion(pageName + ' - ' + time)})
-  //       // .then((res) => console.log('updated with time'))
-  //       .catch((err) => console.log(err))
-  //   );
+  await db
+    .collection(collectionName)
+    .doc(id)
+    .update({'7 screens:': fieldValue.arrayRemove(pageName)})
+    .then(
+      await db
+        .collection(collectionName)
+        .doc(id)
+        .update({'7 screens:': fieldValue.arrayUnion(pageName + ' - ' + time)})
+        // .then((res) => console.log('updated with time'))
+        .catch((err) => console.log(err))
+    );
 };
 
 const checkedUpdation = async (id, item) => {
-  // await db
-  //   .collection(collectionName)
-  //   .doc(id)
-  //   .update({'8 checked:': fieldValue.arrayUnion(item)})
-  //   // .then((res) => console.log('updated - item'))
-  //   .catch((err) => console.log(err));
+  await db
+    .collection(collectionName)
+    .doc(id)
+    .update({'8 checked:': fieldValue.arrayUnion(item)})
+    // .then((res) => console.log('updated - item'))
+    .catch((err) => console.log(err));
 };
 
 const getPDF = (id, count) => {
@@ -203,8 +203,6 @@ const getPDF = (id, count) => {
   //   .catch((err) => {
   //     console.log(err);
   //   });
-  // newPage.location =
-  //   'https://drive.google.com/file/d/139Q-LFK-rh_HtQyuWSN_X7yTsMi53CRE/view?usp=sharing';
 };
 
 export {

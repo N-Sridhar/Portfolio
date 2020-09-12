@@ -100,9 +100,9 @@ function About({id}) {
         <div className="Facts">
           <animated.h3 style={trail[2]}>
             <span role="img" aria-label="emoji">
-              -😄- Random facts,
+              - 😄 - Random facts,
               <br />
-              Endlessly 🕰 I can do - Gaming 🎮, enjoying Music 🎧, drive with
+              Endlessly 🕰 I can do - gaming 🎮, enjoying Music 🎧, drive with
               Friends 💖, watching Sci-Fi movies/series 🎥.
             </span>
           </animated.h3>
@@ -116,7 +116,7 @@ function About({id}) {
                   <br />
                   and if you think
                   <br />I can fulfill your requirements, */}
-                  Check out my area of,
+                  Check out my area of
                   <br />
                   Expertise and Works.
                 </span>
