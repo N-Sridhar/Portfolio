@@ -7,13 +7,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-import {
-  data,
-  createDoc,
-  updateEntry,
-  // updateCoords,
-  ipInfo,
-} from './firestore';
+import {data, createDoc, updateEntry, resumeLink, ipInfo} from './firestore';
 
 export const CountContext = React.createContext();
 export const SetCountContext = React.createContext();
@@ -21,8 +15,11 @@ export const SetCountContext = React.createContext();
 function App() {
   const [id, setId] = useState('');
   const [oldData, setOldData] = useState('');
+  const [driveLink, setDriveLink] = useState('');
 
   useEffect(() => {
+    resumeLink(setDriveLink);
+
     if (localStorage.getItem('id') !== null) {
       setOldData(
         localStorage.getItem('timestamp') + ' -- ' + localStorage.getItem('id')
@@ -80,7 +77,13 @@ function App() {
                         path={screen.link}
                         render={({match}) => (
                           <CountContext.Provider
-                            value={[count, setCount, visitOrder, setVisitOrder]}
+                            value={[
+                              count,
+                              setCount,
+                              visitOrder,
+                              setVisitOrder,
+                              driveLink,
+                            ]}
                           >
                             <screen.view id={id} />
                           </CountContext.Provider>

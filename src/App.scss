@@ -634,6 +634,13 @@ h6 {
       justify-content: space-around;
       width: (100% / 3);
 
+      a {
+        color: $cyan;
+        display: grid;
+        place-items: center;
+        text-decoration: none;
+      }
+
       h3 {
         text-align: center;
 
@@ -642,9 +649,9 @@ h6 {
         }
       }
 
-      .Icon {
-        cursor: pointer;
-      }
+      // .Icon {
+      //   cursor: pointer;
+      // }
     }
   }
 

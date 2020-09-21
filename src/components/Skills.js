@@ -213,7 +213,7 @@ function Skills({id}) {
                   <h2>Bienes Mart</h2>
                   <h4>Apparel & Clothing</h4>
                   <a
-                    href="https://bienes-mart.web.app/"
+                    href="https://bienesmart.in/"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {

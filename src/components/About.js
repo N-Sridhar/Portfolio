@@ -3,7 +3,13 @@ import React, {useEffect, useContext, useState} from 'react';
 import {useTrail, config, animated} from 'react-spring';
 import {ga} from '../firebase';
 import Navbar from './Navbar';
-import {updatePage, updatePageTime, getPDF} from '../firestore';
+import {
+  updatePage,
+  updatePageTime,
+  // eslint-disable-next-line no-unused-vars
+  getPDF,
+  checkedUpdation,
+} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
 import * as Icon from 'react-feather';
@@ -20,7 +26,9 @@ function About({id}) {
     window.scrollTo(0, 0);
   }, []);
 
-  const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
+  const [count, setCount, visitOrder, setVisitOrder, driveLink] = useContext(
+    CountContext
+  );
 
   useEffect(() => {
     if (id !== '') {
@@ -80,20 +88,29 @@ function About({id}) {
                 More than Expected❗
               </span>
             </h3>
-            {/* <a href="" target="_blank"> */}
-            <Icon.FileText
-              className="Icon"
+            <a
+              href={driveLink}
+              target="_blank"
+              rel="noreferrer noopener"
               color="cyan"
               data-tip="My Resume 📄"
               data-border-color="cyan"
               onClick={() => {
+                setVisitOrder((prevCount) => prevCount + 1);
+                // getPDF(id, visitOrder);
                 if (id !== '') {
-                  setVisitOrder((prevCount) => prevCount + 1);
-                  getPDF(id, visitOrder);
+                  checkedUpdation(
+                    id,
+                    visitOrder +
+                      '. Resume (' +
+                      moment().format('h:mm:ss a') +
+                      ')'
+                  );
                 }
               }}
-            />
-            {/* </a> */}
+            >
+              <Icon.FileText className="Icon" />
+            </a>
             <ReactTooltip place="top" border={true} />
           </animated.div>
         </div>
