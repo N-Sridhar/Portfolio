@@ -205,6 +205,14 @@ const getPDF = (id, count) => {
   //   });
 };
 
+const resumeLink = (setDriveLink) => {
+  db.collection('resume')
+    .doc('drive')
+    .onSnapshot((snap) => {
+      setDriveLink(snap.data().link);
+    });
+};
+
 export {
   collectionName,
   data,
@@ -215,4 +223,5 @@ export {
   checkedUpdation,
   updatePageTime,
   getPDF,
+  resumeLink,
 };
