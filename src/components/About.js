@@ -5,8 +5,7 @@ import {ga} from '../firebase';
 import Navbar from './Navbar';
 import {
   updatePage,
-  updatePageTime,
-  // eslint-disable-next-line no-unused-vars
+  updatePageTime, // eslint-disable-next-line no-unused-vars
   getPDF,
   checkedUpdation,
 } from '../firestore';
@@ -15,21 +14,16 @@ import moment from 'moment';
 import * as Icon from 'react-feather';
 import ReactTooltip from 'react-tooltip';
 import {Link} from 'react-router-dom';
-
 function About({id}) {
   const entryTime = moment();
-
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 📄';
     ga.logEvent('About Page');
-    // console.log('About Page');
     window.scrollTo(0, 0);
   }, []);
-
   const [count, setCount, visitOrder, setVisitOrder, driveLink] = useContext(
     CountContext
   );
-
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
@@ -37,7 +31,6 @@ function About({id}) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   useEffect(() => {
     return () => {
       const exitTime = moment();
@@ -52,7 +45,6 @@ function About({id}) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   const [trail, set] = useTrail(3, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
@@ -96,8 +88,7 @@ function About({id}) {
               data-tip="My Resume 📄"
               data-border-color="cyan"
               onClick={() => {
-                setVisitOrder((prevCount) => prevCount + 1);
-                // getPDF(id, visitOrder);
+                setVisitOrder((prevCount) => prevCount + 1); // getPDF(id, visitOrder);
                 if (id !== '') {
                   checkedUpdation(
                     id,
@@ -129,10 +120,7 @@ function About({id}) {
             <Link to="/skills">
               <h3>
                 <span>
-                  {/* Check out my skills
-                  <br />
-                  and if you think
-                  <br />I can fulfill your requirements, */}
+                  {/* Check out my skills<br />and if you think<br />I can fulfill your requirements, */}
                   Check out my area of
                   <br />
                   Expertise and Works.
@@ -158,5 +146,4 @@ function About({id}) {
     </>
   );
 }
-
 export default About;

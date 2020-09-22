@@ -10,7 +10,6 @@ import GitHub from '../icons/github.svg';
 import Dribbble from '../icons/dribble.svg';
 import Discord from '../icons/discord.svg';
 import Thanks from '../icons/thanks.png';
-
 import React, {useEffect, useState, useContext} from 'react';
 import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
@@ -19,21 +18,15 @@ import Navbar from './Navbar';
 import {updatePage, checkedUpdation, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
 import moment from 'moment';
-
 function Contact({id}) {
   const entryTime = moment();
-
   const [visited, setVisited] = useState(null);
-
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 📲';
     ga.logEvent('Contact Page');
-    // console.log('Contact Page');
     window.scrollTo(0, 0);
   }, []);
-
   const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
-
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
@@ -44,11 +37,9 @@ function Contact({id}) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   useEffect(() => {
     if (visited !== null) {
       ga.logEvent(visited);
-      // console.log(visited);
       setVisitOrder((prevCount) => prevCount + 1);
       checkedUpdation(
         id,
@@ -57,7 +48,6 @@ function Contact({id}) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visited, id]);
-
   useEffect(() => {
     return () => {
       const exitTime = moment();
@@ -72,14 +62,12 @@ function Contact({id}) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
     config: config.wobbly,
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
-
   const icons = [
     {
       name: Phone,
@@ -159,7 +147,6 @@ function Contact({id}) {
       borderColor: '#7289da',
     },
   ];
-
   return (
     <>
       <Navbar show="yes" />
@@ -197,5 +184,4 @@ function Contact({id}) {
     </>
   );
 }
-
 export default Contact;

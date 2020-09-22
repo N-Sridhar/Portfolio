@@ -15,12 +15,10 @@ import {
   engineVersion,
 } from 'react-device-detect';
 import axios from 'axios';
-
 const dateTime = moment().format('ddd, D-MM-YYYY | h:mm:ss a');
 const zone = moment.tz.guess();
 const zName = moment.tz(zone).zoneName();
 const dateTimeZone = dateTime + ' | ' + zName;
-
 const data = {
   '0 Entry': 'New Visitor',
   '1 date & time': dateTimeZone,
@@ -38,7 +36,6 @@ const data = {
     engineVersion,
   '9 created': fieldValue.serverTimestamp(),
 };
-
 const createDoc = async (data, setId) => {
   await db
     .collection(collectionName)
@@ -49,7 +46,6 @@ const createDoc = async (data, setId) => {
       setId(res.id);
     });
 };
-
 const updateEntry = async (id, data) => {
   await db
     .collection(collectionName)
@@ -57,7 +53,6 @@ const updateEntry = async (id, data) => {
     .update({'0 Entry': data})
     .catch((err) => console.log(err));
 };
-
 const ipInfo = async (id) => {
   axios
     .get(
@@ -75,9 +70,7 @@ const ipInfo = async (id) => {
     .then((res) => {
       db.collection(collectionName)
         .doc(id)
-        .update({
-          '2 ip info': fieldValue.arrayUnion(res.data.ip),
-        });
+        .update({'2 ip info': fieldValue.arrayUnion(res.data.ip)});
       axios
         .get(
           `https://apility-io-ip-geolocation-v1.p.rapidapi.com/${res.data.ip}`,
@@ -130,7 +123,6 @@ const ipInfo = async (id) => {
       console.log(err);
     });
 };
-
 const updatePage = async (id, pageName) => {
   await db
     .collection(collectionName)
@@ -139,12 +131,10 @@ const updatePage = async (id, pageName) => {
     // .then((res) => console.log('updated - page'))
     .catch((err) => console.log(err));
 };
-
 const updatePageTime = async (startTime, endTime, id, pageName) => {
   var sec = endTime.diff(startTime, 'seconds');
   const time =
     sec <= 60 ? sec + 's' : (sec - (sec %= 60)) / 60 + 'm ' + sec + 's';
-
   await db
     .collection(collectionName)
     .doc(id)
@@ -158,7 +148,6 @@ const updatePageTime = async (startTime, endTime, id, pageName) => {
         .catch((err) => console.log(err))
     );
 };
-
 const checkedUpdation = async (id, item) => {
   await db
     .collection(collectionName)
@@ -167,7 +156,6 @@ const checkedUpdation = async (id, item) => {
     // .then((res) => console.log('updated - item'))
     .catch((err) => console.log(err));
 };
-
 const getPDF = (id, count) => {
   const newPage = window.open();
   newPage.document.title = 'Sridhar Nallasamy 😊 • Resume';
@@ -179,7 +167,6 @@ const getPDF = (id, count) => {
   h1.innerText = '⏳ Loading... Please wait';
   h1.style.color = 'white';
   newPage.document.body.appendChild(h1);
-
   db.collection('resume')
     .doc('drive')
     .onSnapshot((snap) => {
@@ -189,22 +176,8 @@ const getPDF = (id, count) => {
       );
       newPage.location = snap.data().link;
     });
-
-  // storage
-  //   .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')
-  //   .getDownloadURL()
-  //   .then(function (url) {
-  //     newPage.location = url;
-  //     checkedUpdation(
-  //       id,
-  //       count + '. Resume (' + moment().format('h:mm:ss a') + ')'
-  //     );
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  // storage//   .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')//   .getDownloadURL()//   .then(function (url) {//     newPage.location = url;//     checkedUpdation(//       id,//       count + '. Resume (' + moment().format('h:mm:ss a') + ')'//     );//   })//   .catch((err) => {//     console.log(err);//   });
 };
-
 const resumeLink = (setDriveLink) => {
   db.collection('resume')
     .doc('drive')
@@ -212,7 +185,6 @@ const resumeLink = (setDriveLink) => {
       setDriveLink(snap.data().link);
     });
 };
-
 export {
   collectionName,
   data,

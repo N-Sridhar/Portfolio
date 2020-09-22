@@ -4,24 +4,17 @@ import {ga} from '../firebase';
 import {Link} from 'react-router-dom';
 import Navbar from './Navbar';
 import {useWindowSize} from 'react-use';
-import {updatePage, updatePageTime} from '../firestore';
-// eslint-disable-next-line no-unused-vars
+import {updatePage, updatePageTime} from '../firestore'; // eslint-disable-next-line no-unused-vars
 import {CountContext} from '../App';
-import moment from 'moment';
-
-// import Techie from '../icons/techie.png';
+import moment from 'moment'; // import Techie from '../icons/techie.png';
 import Techie from '../icons/techie.svg';
-
 function Home({id}) {
   const entryTime = moment();
-
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 🏡';
     ga.logEvent('Home Page');
-    // console.log('Home Page');
     window.scrollTo(0, 0);
   }, []);
-
   const {height, width} = useWindowSize();
   const [trail, set] = useTrail(2, () => ({
     transform: 'translate3d(0, 30px, 0)',
@@ -29,17 +22,13 @@ function Home({id}) {
     config: config.wobbly,
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
-
   const [count, setCount] = useContext(CountContext);
-
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
       updatePage(id, count + '. Home (' + entryTime.format('h:mm:ss a') + ')');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   useEffect(() => {
     return () => {
       const exit = moment();
@@ -51,10 +40,8 @@ function Home({id}) {
           count + '. Home (' + entryTime.format('h:mm:ss a') + ')'
         );
       }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   return (
     <>
       <Navbar />
@@ -95,9 +82,7 @@ function Home({id}) {
         <div className="Home-Button">
           <Link to="/about">
             <div className="left fadeInUp" style={{animationDelay: '.1s'}}>
-              {/* <div class="bg" />
-              <div class="bg bg2" />
-              <div class="bg bg3" /> */}
+              {/* <div class="bg" /><div class="bg bg2" /><div class="bg bg3" /> */}
               <h3>A b o u t</h3>
             </div>
           </Link>
@@ -116,5 +101,4 @@ function Home({id}) {
     </>
   );
 }
-
 export default Home;

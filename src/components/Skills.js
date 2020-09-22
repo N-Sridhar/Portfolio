@@ -8,7 +8,6 @@ import Firebase from '../icons/firebase.svg';
 import Xd from '../icons/xd.svg';
 import Gitlab from '../icons/gitlab.svg';
 import Docker from '../icons/docker.svg';
-
 import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
 import {animated} from 'react-spring';
@@ -20,19 +19,14 @@ import moment from 'moment';
 import {isMobile} from 'react-device-detect';
 import ReactTooltip from 'react-tooltip';
 import * as Icon from 'react-feather';
-
 function Skills({id}) {
   const entryTime = moment();
-
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 👨🏻‍💻';
     ga.logEvent('Skills Page');
-    // console.log('Skills Page');
     window.scrollTo(0, 0);
   }, []);
-
   const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
-
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
@@ -40,10 +34,8 @@ function Skills({id}) {
         id,
         count + '. Skills (' + entryTime.format('h:mm:ss a') + ')'
       );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   useEffect(() => {
     return () => {
       const exitTime = moment();
@@ -58,24 +50,20 @@ function Skills({id}) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
   const [trail, set] = useTrail(4, () => ({
     transform: 'translate3d(0, 30px, 0)',
     opacity: 0,
     config: config.wobbly,
   }));
   set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
-
   const spinner = 'spinner';
   const size = isMobile ? '35' : '45';
-
   const Tools = [
     {name: 'Firebase', icon: Firebase, text: 'Firebase'},
     {name: 'Xd', icon: Xd, text: 'Adobe XD'},
     {name: 'Gitlab', icon: Gitlab, text: 'GitLab'},
     {name: 'Docker', icon: Docker, text: 'Docker'},
   ];
-
   return (
     <>
       <Navbar show="yes" />
@@ -84,17 +72,15 @@ function Skills({id}) {
           <animated.div className="Text" style={trail[0]}>
             <h3>
               <span role="img" aria-label="smiling face">
-                {/* I'm an inquisitive person and believes that "Keep Learning❗" is
-                one of the best surviving technique. So I'll always try to learn
-                new skills and technologies. */}
+                {/* I'm an inquisitive person and believes that "Keep Learning❗" is one of the best surviving technique. So I'll always try to learn new skills and technologies. */}
                 I'm an inquisitive person and believe that "Keep learning❗" is
                 one of the best surviving techniques.
                 <br />
                 This idea kept me engaging myself in learning new skills and
                 technologies.
                 <br />
-                {/* And as far now, I learned these tech stacks 😊 */}
-                Below I have enlisted my current mastery on tech stack 😊
+                {/* And as far now, I learned these tech stacks 😊 */}Below I
+                have enlisted my current mastery on tech stack 😊
               </span>
             </h3>
           </animated.div>
@@ -123,9 +109,7 @@ function Skills({id}) {
           <animated.div className="Text" style={trail[2]}>
             <h3>
               <span role="img" aria-label="emoji">
-                {/* Besides technology, I'm engrossed in visual effects and computer
-                graphics too and that kept me practicing these tools and try
-                something. */}
+                {/* Besides technology, I'm engrossed in visual effects and computer graphics too and that kept me practicing these tools and try something. */}
                 Besides technology, I'm engrossed in visual effects and computer
                 graphics which cheered me up to explore and practice these tools
                 and try something new.
@@ -243,5 +227,4 @@ function Skills({id}) {
     </>
   );
 }
-
 export default Skills;
