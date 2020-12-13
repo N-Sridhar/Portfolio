@@ -16,6 +16,6 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 const ga = firebase.analytics();
 const storage = firebase.storage();
-const collectionName = 'PROD_v01';
+const collectionName = 'PROD_v02';
 const fieldValue = firebase.firestore.FieldValue;
 export {db, storage, ga, collectionName, fieldValue};

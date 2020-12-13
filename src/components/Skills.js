@@ -4,6 +4,9 @@ import Pr from '../icons/pr.svg';
 import Ai from '../icons/ai.svg';
 import Blender from '../icons/blender.svg';
 import Bienes from '../icons/bienes_mart.svg';
+import Amazon from '../icons/amazon.svg';
+import Discord from '../icons/discord-wordmark.svg';
+import Instagram from '../icons/instagram.svg';
 import Firebase from '../icons/firebase.svg';
 import Xd from '../icons/xd.svg';
 import Gitlab from '../icons/gitlab.svg';
@@ -63,6 +66,19 @@ function Skills({id}) {
     {name: 'Xd', icon: Xd, text: 'Adobe XD'},
     {name: 'Gitlab', icon: Gitlab, text: 'GitLab'},
     {name: 'Docker', icon: Docker, text: 'Docker'},
+  ];
+  const Mocks = [
+    {name: 'Amazon Mock', icon: Amazon, link: 'https://amzn-mock.web.app/'},
+    {
+      name: 'Discord Mock',
+      icon: Discord,
+      link: 'https://discord-mock.web.app/',
+    },
+    {
+      name: 'Instagram Mock',
+      icon: Instagram,
+      link: 'https://insta-mock-react.web.app/',
+    },
   ];
   return (
     <>
@@ -220,6 +236,43 @@ function Skills({id}) {
                   </a>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="Mocks">
+            <div className="Text">
+              <h4>M O C K - B U I L D S</h4>
+            </div>
+            <div className="Cards">
+              {Mocks.map((Mock, i) => (
+                <div className="Builds" key={i}>
+                  <img src={Mock.icon} alt={Mock.name} />
+                  <div className="Info">
+                    <h3>{Mock.name}</h3>
+                    <a
+                      href={Mock.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        if (id !== '') {
+                          setVisitOrder((prevCount) => prevCount + 1);
+                          checkedUpdation(
+                            id,
+                            visitOrder +
+                              `. ${Mock.name} (` +
+                              moment().format('h:mm:ss a') +
+                              ')'
+                          );
+                        }
+                      }}
+                    >
+                      <Icon.ArrowRightCircle
+                        className="button"
+                        size={!isMobile ? '32px' : '40px'}
+                      />
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

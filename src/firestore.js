@@ -73,23 +73,24 @@ const ipInfo = async (id) => {
         .update({'2 ip info': fieldValue.arrayUnion(res.data.ip)});
       axios
         .get(
-          `https://apility-io-ip-geolocation-v1.p.rapidapi.com/${res.data.ip}`,
-          {
-            method: 'GET',
-            headers: {
-              'x-rapidapi-host': 'apility-io-ip-geolocation-v1.p.rapidapi.com',
-              'x-rapidapi-key':
-                '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
-              accept: 'application/json',
-            },
-          }
+          // `https://apility-io-ip-geolocation-v1.p.rapidapi.com/${res.data.ip}`,
+          `https://ipapi.co/${res.data.ip}/json`
+          // {
+          //   method: 'GET',
+          //   headers: {
+          //     'x-rapidapi-host': 'apility-io-ip-geolocation-v1.p.rapidapi.com',
+          //     'x-rapidapi-key':
+          //       '9b3ea1da7amsh91fa11ce6b1b667p180c01jsn9353680b637f',
+          //     accept: 'application/json',
+          //   },
+          // }
         )
         .then((res) => {
-          const addr = res.data.ip.address;
-          const merchant = res.data.ip.as.name;
-          const city = res.data.ip.city_names.en;
-          const region = res.data.ip.region_names.en;
-          const country = res.data.ip.country_names.en;
+          const addr = res.data.ip;
+          const merchant = res.data.org;
+          const city = res.data.city;
+          const region = res.data.region;
+          const country = res.data.country_name;
           const ipdata = {
             ip: addr + ' - ' + merchant.split('.')[0],
             loc: city + ' - ' + region + ' - ' + country,
@@ -156,28 +157,28 @@ const checkedUpdation = async (id, item) => {
     // .then((res) => console.log('updated - item'))
     .catch((err) => console.log(err));
 };
-const getPDF = (id, count) => {
-  const newPage = window.open();
-  newPage.document.title = 'Sridhar Nallasamy 😊 • Resume';
-  newPage.document.body.style.backgroundColor = '#282c34';
-  newPage.document.body.style.display = 'flex';
-  newPage.document.body.style.alignItems = 'center';
-  newPage.document.body.style.justifyContent = 'center';
-  const h1 = newPage.document.createElement('h1');
-  h1.innerText = '⏳ Loading... Please wait';
-  h1.style.color = 'white';
-  newPage.document.body.appendChild(h1);
-  db.collection('resume')
-    .doc('drive')
-    .onSnapshot((snap) => {
-      checkedUpdation(
-        id,
-        count + '. Resume (' + moment().format('h:mm:ss a') + ')'
-      );
-      newPage.location = snap.data().link;
-    });
-  // storage//   .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')//   .getDownloadURL()//   .then(function (url) {//     newPage.location = url;//     checkedUpdation(//       id,//       count + '. Resume (' + moment().format('h:mm:ss a') + ')'//     );//   })//   .catch((err) => {//     console.log(err);//   });
-};
+// const getPDF = (id, count) => {
+//   const newPage = window.open();
+//   newPage.document.title = 'Sridhar Nallasamy 😊 • Resume';
+//   newPage.document.body.style.backgroundColor = '#282c34';
+//   newPage.document.body.style.display = 'flex';
+//   newPage.document.body.style.alignItems = 'center';
+//   newPage.document.body.style.justifyContent = 'center';
+//   const h1 = newPage.document.createElement('h1');
+//   h1.innerText = '⏳ Loading... Please wait';
+//   h1.style.color = 'white';
+//   newPage.document.body.appendChild(h1);
+//   db.collection('resume')
+//     .doc('drive')
+//     .onSnapshot((snap) => {
+//       checkedUpdation(
+//         id,
+//         count + '. Resume (' + moment().format('h:mm:ss a') + ')'
+//       );
+//       newPage.location = snap.data().link;
+//     });
+// storage//   .refFromURL('gs://sridhar-nallasamy.appspot.com/Resume/Sridhar.pdf')//   .getDownloadURL()//   .then(function (url) {//     newPage.location = url;//     checkedUpdation(//       id,//       count + '. Resume (' + moment().format('h:mm:ss a') + ')'//     );//   })//   .catch((err) => {//     console.log(err);//   });
+// };
 const resumeLink = (setDriveLink) => {
   db.collection('resume')
     .doc('drive')
@@ -194,6 +195,6 @@ export {
   updatePage,
   checkedUpdation,
   updatePageTime,
-  getPDF,
+  // getPDF,
   resumeLink,
 };
