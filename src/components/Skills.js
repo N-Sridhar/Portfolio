@@ -4,9 +4,6 @@ import Pr from '../icons/pr.svg';
 import Ai from '../icons/ai.svg';
 import Blender from '../icons/blender.svg';
 import Bienes from '../icons/bienes_mart.svg';
-import Amazon from '../icons/amazon.svg';
-import Discord from '../icons/discord-wordmark.svg';
-import Instagram from '../icons/instagram.svg';
 import Firebase from '../icons/firebase.svg';
 import Xd from '../icons/xd.svg';
 import Gitlab from '../icons/gitlab.svg';
@@ -63,22 +60,9 @@ function Skills({id}) {
   const size = isMobile ? '35' : '45';
   const Tools = [
     {name: 'Firebase', icon: Firebase, text: 'Firebase'},
-    {name: 'Xd', icon: Xd, text: 'Adobe XD'},
-    {name: 'Gitlab', icon: Gitlab, text: 'GitLab'},
     {name: 'Docker', icon: Docker, text: 'Docker'},
-  ];
-  const Mocks = [
-    {name: 'Amazon Mock', icon: Amazon, link: 'https://amzn-mock.web.app/'},
-    {
-      name: 'Discord Mock',
-      icon: Discord,
-      link: 'https://discord-mock.web.app/',
-    },
-    {
-      name: 'Instagram Mock',
-      icon: Instagram,
-      link: 'https://insta-mock-react.web.app/',
-    },
+    {name: 'Gitlab', icon: Gitlab, text: 'GitLab'},
+    {name: 'Xd', icon: Xd, text: 'Adobe XD'},
   ];
   return (
     <>
@@ -211,7 +195,7 @@ function Skills({id}) {
                 <img src={Bienes} alt="bienes mart" />
                 <div className="Info">
                   <h2>Bienes Mart</h2>
-                  <h4>Apparel & Clothing</h4>
+                  <h5>Merchandising Service</h5>
                   <a
                     href="https://bienesmart.in/"
                     target="_blank"
@@ -238,7 +222,7 @@ function Skills({id}) {
               </div>
             </div>
           </div>
-          <div className="Mocks">
+          {/* <div className="Mocks">
             <div className="Text">
               <h4>M O C K - B U I L D S</h4>
             </div>
@@ -274,7 +258,7 @@ function Skills({id}) {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

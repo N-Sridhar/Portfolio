@@ -1,14 +1,14 @@
 import Phone from '../icons/phone.svg';
 import Gmail from '../icons/gmail.svg';
 import Whatsapp from '../icons/whatsapp.svg';
-import Facebook from '../icons/facebook.svg';
+// import Facebook from '../icons/facebook.svg';
 import Instagram from '../icons/insta.svg';
-import Twitter from '../icons/twitter.svg';
-import Snapchat from '../icons/snapchat.svg';
+// import Twitter from '../icons/twitter.svg';
+// import Snapchat from '../icons/snapchat.svg';
 import LinkedIn from '../icons/linkedin.svg';
 import GitHub from '../icons/github.svg';
-import Dribbble from '../icons/dribble.svg';
-import Discord from '../icons/discord.svg';
+// import Dribbble from '../icons/dribble.svg';
+// import Discord from '../icons/discord.svg';
 import Thanks from '../icons/thanks.png';
 import React, {useEffect, useState, useContext} from 'react';
 import {useTrail, animated, config} from 'react-spring';
@@ -111,41 +111,41 @@ function Contact({id}) {
       tooltip: 'Instagram:<br/>Sridhar',
       borderColor: '#dd2a7b',
     },
-    {
-      name: Facebook,
-      alt: 'Facebook',
-      href: 'https://www.facebook.com/sri.luzifer',
-      tooltip: 'Facebook:<br/>Sridhar',
-      borderColor: '#3b5998',
-    },
-    {
-      name: Twitter,
-      alt: 'Twitter',
-      href: 'https://twitter.com/Sri_Luzifer',
-      tooltip: 'Twitter:<br/>Sridhar Nallsamy',
-      borderColor: '#00acee',
-    },
-    {
-      name: Snapchat,
-      alt: 'Snapchat',
-      href: 'https://www.snapchat.com/add/n.sridhar3',
-      tooltip: 'Snapchat:<br/>n.sridhar3',
-      borderColor: '#fffc00',
-    },
-    {
-      name: Dribbble,
-      alt: 'Dribbble',
-      href: 'https://dribbble.com/SriLuzifer',
-      tooltip: 'Dribbble:<br/>Sridhar Nallasamy',
-      borderColor: '#ea4c89',
-    },
-    {
-      name: Discord,
-      alt: 'Discord',
-      href: 'https://discord.com/channels/CM%E4%B9%88SriLuzifer#0791',
-      tooltip: 'Discord:<br/>CM么SriLuzifer',
-      borderColor: '#7289da',
-    },
+    // {
+    //   name: Facebook,
+    //   alt: 'Facebook',
+    //   href: 'https://www.facebook.com/sri.luzifer',
+    //   tooltip: 'Facebook:<br/>Sridhar',
+    //   borderColor: '#3b5998',
+    // },
+    // {
+    //   name: Twitter,
+    //   alt: 'Twitter',
+    //   href: 'https://twitter.com/Sri_Luzifer',
+    //   tooltip: 'Twitter:<br/>Sridhar Nallsamy',
+    //   borderColor: '#00acee',
+    // },
+    // {
+    //   name: Snapchat,
+    //   alt: 'Snapchat',
+    //   href: 'https://www.snapchat.com/add/n.sridhar3',
+    //   tooltip: 'Snapchat:<br/>n.sridhar3',
+    //   borderColor: '#fffc00',
+    // },
+    // {
+    //   name: Dribbble,
+    //   alt: 'Dribbble',
+    //   href: 'https://dribbble.com/SriLuzifer',
+    //   tooltip: 'Dribbble:<br/>Sridhar Nallasamy',
+    //   borderColor: '#ea4c89',
+    // },
+    // {
+    //   name: Discord,
+    //   alt: 'Discord',
+    //   href: 'https://discord.com/channels/CM%E4%B9%88SriLuzifer#0791',
+    //   tooltip: 'Discord:<br/>CM么SriLuzifer',
+    //   borderColor: '#7289da',
+    // },
   ];
   return (
     <>
@@ -155,7 +155,7 @@ function Contact({id}) {
           <h2>
             Need a hand?
             <br />
-            Reach me by your convenient medium.
+            Please reach out to me.
           </h2>
         </animated.div>
         <animated.div className="Icons" style={trail[1]}>

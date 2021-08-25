@@ -21,9 +21,8 @@ function About({id}) {
     ga.logEvent('About Page');
     window.scrollTo(0, 0);
   }, []);
-  const [count, setCount, visitOrder, setVisitOrder, driveLink] = useContext(
-    CountContext
-  );
+  const [count, setCount, visitOrder, setVisitOrder, driveLink] =
+    useContext(CountContext);
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
@@ -58,7 +57,8 @@ function About({id}) {
         <animated.div className="Text" style={trail[0]}>
           <h3>
             <span>
-              I’m a Web-App developer from Tiruppur, India.
+              I’m a Software Engineer from Tiruppur, India - Currently working
+              in Virtusa (hyd).
               <br />
               I’ve always sought out opportunities and challenges that are
               meaningful to me.

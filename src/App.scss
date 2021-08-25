@@ -810,7 +810,7 @@ h6 {
 
           @keyframes java {
             to {
-              width: 80%;
+              width: 95%;
             }
           }
         }
@@ -822,7 +822,7 @@ h6 {
 
           @keyframes spring {
             to {
-              width: 75%;
+              width: 90%;
             }
           }
         }
@@ -834,7 +834,7 @@ h6 {
 
           @keyframes htmlcss {
             to {
-              width: 80%;
+              width: 100%;
             }
           }
         }
@@ -858,19 +858,7 @@ h6 {
 
           @keyframes sass {
             to {
-              width: 80%;
-            }
-          }
-        }
-
-        &.xd {
-          &::after {
-            animation-name: xd;
-          }
-
-          @keyframes xd {
-            to {
-              width: 70%;
+              width: 90%;
             }
           }
         }
@@ -1315,7 +1303,7 @@ h6 {
 }
 
 .Contact {
-  @include base-card(25rem);
+  @include base-card(fit-content);
 
   .Text {
     align-items: center;
@@ -1353,15 +1341,20 @@ h6 {
 
   .Icons {
     align-items: center;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-top: 5rem;
-    place-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    // display: grid;
+    // grid-gap: 20px;
+    // grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+    justify-content: center;
+    margin: 0 3rem 2rem;
+    // margin-right: 3rem;
+    // margin-top: 5rem;
+    // place-items: center;
 
     & > a {
+      margin: 3rem;
+
       img {
         transition: 0.3s;
         width: 45px;
@@ -1725,12 +1718,15 @@ h6 {
     }
 
     .Icons {
-      grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-      margin-left: 1rem;
-      margin-right: 1rem;
-      margin-top: 3rem;
+      // grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+      // margin-left: 1rem;
+      // margin-right: 1rem;
+      // margin-top: 3rem;
+      margin: 1rem;
 
       a {
+        margin: 1.5rem;
+
         img {
           width: 45px;
         }
@@ -1833,12 +1829,14 @@ h6 {
     }
 
     .Icons {
-      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-      margin-left: 1rem;
-      margin-right: 1rem;
-      margin-top: 4.5rem;
+      // grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      // margin-left: 1rem;
+      // margin-right: 1rem;
+      // margin-top: 4.5rem;
 
       a {
+        margin: 2rem;
+
         img {
           width: 48px;
         }

@@ -72,7 +72,7 @@ function Home({id}) {
               <span>SRIDHAR</span>
             </h1>
             {/* <h2>Developer | Designer</h2> */}
-            <h3>Web-App Developer</h3>
+            <h3>Software Engineer</h3>
           </animated.div>
           <animated.div className="home-right" style={trail[1]}>
             {/* <h3>Home Right | {id}</h3> */}
