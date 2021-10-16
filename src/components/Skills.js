@@ -6,7 +6,8 @@ import Blender from '../icons/blender.svg';
 import Bienes from '../icons/bienes_mart.svg';
 import Firebase from '../icons/firebase.svg';
 import Xd from '../icons/xd.svg';
-import Gitlab from '../icons/gitlab.svg';
+import Git from '../icons/git.svg';
+import GitHub from '../icons/github.svg';
 import Docker from '../icons/docker.svg';
 import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
@@ -59,10 +60,11 @@ function Skills({id}) {
   const spinner = 'spinner';
   const size = isMobile ? '35' : '45';
   const Tools = [
+    {name: 'Gitlab', icon: Git, text: 'Git'},
+    {name: 'Gitlab', icon: GitHub, text: 'GitHub'},
     {name: 'Firebase', icon: Firebase, text: 'Firebase'},
-    {name: 'Docker', icon: Docker, text: 'Docker'},
-    {name: 'Gitlab', icon: Gitlab, text: 'GitLab'},
     {name: 'Xd', icon: Xd, text: 'Adobe XD'},
+    {name: 'Docker', icon: Docker, text: 'Docker'},
   ];
   return (
     <>
