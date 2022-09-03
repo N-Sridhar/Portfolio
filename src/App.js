@@ -1,12 +1,7 @@
 import React, {Suspense, useState, useEffect} from 'react';
 import './App.scss';
 import {screens} from './components/Navbar';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {data, createDoc, updateEntry, resumeLink, ipInfo} from './firestore';
 export const CountContext = React.createContext();
 export const SetCountContext = React.createContext();
@@ -21,7 +16,7 @@ function App() {
         localStorage.getItem('timestamp') + ' -- ' + localStorage.getItem('id')
       );
     }
-    createDoc(data, setId); // eslint-disable-next-line react-hooks/exhaustive-deps
+    createDoc(data, setId);
   }, []);
   useEffect(() => {
     if (id !== '') {
@@ -42,40 +37,35 @@ function App() {
       <div id="stars2"></div>
       <div id="stars3"></div>
       <Suspense fallback={<div />}>
-        <Router>
-          {/* <Navbar show="yes" /> */}
-          <Route
-            render={({location}) => (
-              <React.Fragment>
-                <Switch location={location}>
-                  {screens.map((screen, index) => {
-                    return (
-                      <Route
-                        exact
-                        path={screen.link}
-                        render={({match}) => (
-                          <CountContext.Provider
-                            value={[
-                              count,
-                              setCount,
-                              visitOrder,
-                              setVisitOrder,
-                              driveLink,
-                            ]}
-                          >
-                            <screen.view id={id} />
-                          </CountContext.Provider>
-                        )}
-                        key={index}
-                      />
-                    );
-                  })}
-                  <Redirect to="/" />
-                </Switch>
-              </React.Fragment>
-            )}
-          ></Route>
-        </Router>
+        <BrowserRouter>
+          <CountContext.Provider
+            value={[count, setCount, visitOrder, setVisitOrder, driveLink]}
+          >
+            <Routes>
+              {screens.map((screen, index) => {
+                return (
+                  <Route
+                    path={screen.link}
+                    element={
+                      // <CountContext.Provider
+                      //   value={[
+                      //     count,
+                      //     setCount,
+                      //     visitOrder,
+                      //     setVisitOrder,
+                      //     driveLink,
+                      //   ]}
+                      // >
+                      <screen.view id={id} />
+                      // </CountContext.Provider>
+                    }
+                    key={index}
+                  />
+                );
+              })}
+            </Routes>
+          </CountContext.Provider>
+        </BrowserRouter>
       </Suspense>
     </div>
   );

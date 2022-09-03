@@ -31,17 +31,19 @@ const SLIDE_OUT_MOBILE = {
 function Navbar({show}) {
   const [expand, setExpand] = useState(false);
   useLockBodyScroll(expand);
-  const [spring, set, stop] = useSpring(() => ({opacity: 0}));
-  set({opacity: 1});
-  stop();
-  const transitions = useTransition(expand, null, {
+  const [spring] = useSpring(() => ({
+    from: {opacity: 0},
+    to: {opacity: 1},
+  }));
+  const transitions = useTransition(expand, {
     from: SLIDE_IN_MOBILE,
     enter: SLIDE_OUT_MOBILE,
     leave: SLIDE_IN_MOBILE,
     config: {mass: 1, tension: 210, friction: 26},
+    onRest: () => setExpand(false),
   });
   return (
-    <div className="Navbar" style={spring}>
+    <animated.div className="Navbar" style={spring}>
       <div className="Brand opacityIn" style={{animationDelay: '.25s'}}>
         <Link to="/">
           <img src={Logo} alt="Sridhar 😎| VGS"></img>
@@ -64,16 +66,12 @@ function Navbar({show}) {
           </animated.div>
         ))}
       </animated.div>
-      {transitions.map(({item, key, props}) =>
-        item ? (
-          <animated.div key={key} style={props}>
-            <Expand {...{setExpand}} />
-          </animated.div>
-        ) : (
-          <animated.div key={key} style={props}></animated.div>
-        )
-      )}
-    </div>
+      {transitions((styles, item, t, i) => (
+        <animated.div key={i} style={styles}>
+          {item && <Expand {...{setExpand}} />}
+        </animated.div>
+      ))}
+    </animated.div>
   );
 }
 function Expand({setExpand}) {

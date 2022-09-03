@@ -1,6 +1,5 @@
 import React, {useEffect, useContext} from 'react';
 import {useTrail, animated, config} from 'react-spring';
-import {ga} from '../firebase';
 import {Link} from 'react-router-dom';
 import Navbar from './Navbar';
 import {useWindowSize} from 'react-use';
@@ -12,24 +11,21 @@ function Home({id}) {
   const entryTime = moment();
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 🏡';
-    ga.logEvent('Home Page');
     window.scrollTo(0, 0);
   }, []);
   const {height, width} = useWindowSize();
-  const [trail, set] = useTrail(2, () => ({
-    transform: 'translate3d(0, 30px, 0)',
-    opacity: 0,
+  const [trail] = useTrail(2, () => ({
+    from: {transform: 'translate3d(0, 35px, 0)', opacity: 0},
+    to: {transform: 'translate3d(0, 0px, 0)', opacity: 1},
     config: config.wobbly,
   }));
-  set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   const [count, setCount] = useContext(CountContext);
   useEffect(() => {
     if (id !== '') {
       setCount((prevCount) => prevCount + 1);
       updatePage(id, count + '. Home (' + entryTime.format('h:mm:ss a') + ')');
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
-  useEffect(() => {
+    }
+
     return () => {
       const exit = moment();
       if (id !== '') {
@@ -40,8 +36,10 @@ function Home({id}) {
           count + '. Home (' + entryTime.format('h:mm:ss a') + ')'
         );
       }
-    }; // eslint-disable-next-line react-hooks/exhaustive-deps
+    };
+    // eslint-disable-next-line
   }, [id]);
+
   return (
     <>
       <Navbar />

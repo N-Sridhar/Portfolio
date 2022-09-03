@@ -12,7 +12,6 @@ import Docker from '../icons/docker.svg';
 import React, {useEffect, useContext} from 'react';
 import {useTrail, config} from 'react-spring';
 import {animated} from 'react-spring';
-import {ga} from '../firebase';
 import Navbar from './Navbar';
 import {updatePage, checkedUpdation, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
@@ -24,7 +23,6 @@ function Skills({id}) {
   const entryTime = moment();
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 👨🏻‍💻';
-    ga.logEvent('Skills Page');
     window.scrollTo(0, 0);
   }, []);
   const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
@@ -51,12 +49,11 @@ function Skills({id}) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  const [trail, set] = useTrail(4, () => ({
-    transform: 'translate3d(0, 30px, 0)',
-    opacity: 0,
+  const [trail] = useTrail(4, () => ({
+    from: {transform: 'translate3d(0, 35px, 0)', opacity: 0},
+    to: {transform: 'translate3d(0, 0px, 0)', opacity: 1},
     config: config.wobbly,
   }));
-  set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   const spinner = 'spinner';
   const size = isMobile ? '35' : '45';
   const Tools = [

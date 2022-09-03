@@ -13,7 +13,6 @@ import Thanks from '../icons/thanks.png';
 import React, {useEffect, useState, useContext} from 'react';
 import {useTrail, animated, config} from 'react-spring';
 import ReactTooltip from 'react-tooltip';
-import {ga} from '../firebase';
 import Navbar from './Navbar';
 import {updatePage, checkedUpdation, updatePageTime} from '../firestore';
 import {CountContext} from '../App';
@@ -23,7 +22,6 @@ function Contact({id}) {
   const [visited, setVisited] = useState(null);
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 📲';
-    ga.logEvent('Contact Page');
     window.scrollTo(0, 0);
   }, []);
   const [count, setCount, visitOrder, setVisitOrder] = useContext(CountContext);
@@ -39,7 +37,6 @@ function Contact({id}) {
   }, [id]);
   useEffect(() => {
     if (visited !== null) {
-      ga.logEvent(visited);
       setVisitOrder((prevCount) => prevCount + 1);
       checkedUpdation(
         id,
@@ -62,12 +59,11 @@ function Contact({id}) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  const [trail, set] = useTrail(2, () => ({
-    transform: 'translate3d(0, 30px, 0)',
-    opacity: 0,
+  const [trail] = useTrail(2, () => ({
+    from: {transform: 'translate3d(0, 30px, 0)', opacity: 0},
+    to: {transform: 'translate3d(0, 0px, 0)', opacity: 1},
     config: config.wobbly,
   }));
-  set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
   const icons = [
     {
       name: Phone,

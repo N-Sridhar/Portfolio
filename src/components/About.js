@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useContext, useState} from 'react';
 import {useTrail, config, animated} from 'react-spring';
-import {ga} from '../firebase';
 import Navbar from './Navbar';
 import {
   updatePage,
@@ -18,7 +17,6 @@ function About({id}) {
   const entryTime = moment();
   useEffect(() => {
     document.title = 'Sridhar Nallasamy 😊 • 📄';
-    ga.logEvent('About Page');
     window.scrollTo(0, 0);
   }, []);
   const [count, setCount, visitOrder, setVisitOrder, driveLink] =
@@ -44,12 +42,12 @@ function About({id}) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-  const [trail, set] = useTrail(3, () => ({
-    transform: 'translate3d(0, 30px, 0)',
-    opacity: 0,
+  const [trail] = useTrail(3, () => ({
+    from: {transform: 'translate3d(0, 35px, 0)', opacity: 0},
+    to: {transform: 'translate3d(0, 0px, 0)', opacity: 1},
     config: config.wobbly,
   }));
-  set({transform: 'translate3d(0, 0px, 0)', opacity: 1});
+
   return (
     <>
       <Navbar show="yes" />
