@@ -6,63 +6,19 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "eslint": "eslint .",
-    "eslint:fix": "eslint --fix --max-warnings=0",
-    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|md|html)\"",
-    "scss-lint": "sass-lint 'src/**/*.scss' -v -f table --max-warnings 0",
-    "scss-lint:fix": "sass-lint-auto-fix 'src/**/*.scss' -d -h -c .sass-lint-auto-fix.yml"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.+(js|jsx)": [
-      "npm run eslint:fix",
-      "prettier --write \"**/*.+(js|jsx)\""
-    ],
-    "*.+(json|yml|yaml|md)": [
-      "prettier --write \"**/*.+(json|yml|yaml|md)\""
-    ],
-    "*.+(css|scss)": [
-      "npm run scss-lint:fix",
-      "npm run scss-lint"
-    ]
+    "eject": "react-scripts eject"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "firebase": "^9.9.4",
-    "moment": "^2.29.4",
-    "moment-timezone": "^0.5.37",
-    "node-sass": "^7.0.1",
+    "firebase": "^10.5.0",
     "react": "^18.2.0",
-    "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
-    "react-feather": "^2.0.10",
-    "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "react-spring": "^9.5.2",
-    "react-tooltip": "^4.2.21",
-    "react-use": "^17.4.0"
+    "react-scripts": "5.0.1"
   },
-  "devDependencies": {
-    "eslint": "^8.23.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.3",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "sass-lint": "^1.13.1",
-    "sass-lint-auto-fix": "^0.21.2"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [

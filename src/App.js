@@ -1,73 +1,38 @@
-import React, {Suspense, useState, useEffect} from 'react';
-import './App.scss';
-import {screens} from './components/Navbar';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {data, createDoc, updateEntry, resumeLink, ipInfo} from './firestore';
-export const CountContext = React.createContext();
-export const SetCountContext = React.createContext();
-function App() {
-  const [id, setId] = useState('');
-  const [oldData, setOldData] = useState('');
-  const [driveLink, setDriveLink] = useState('');
-  useEffect(() => {
-    resumeLink(setDriveLink);
-    if (localStorage.getItem('id') !== null) {
-      setOldData(
-        localStorage.getItem('timestamp') + ' -- ' + localStorage.getItem('id')
-      );
-    }
-    createDoc(data, setId);
-  }, []);
-  useEffect(() => {
-    if (id !== '') {
-      ipInfo(id);
-    }
-  }, [id]);
-  useEffect(() => {
-    if (id !== '' && oldData !== '') {
-      updateEntry(id, oldData);
-    }
-  }, [id, oldData]);
-  // useEffect(() => {//   navigator.geolocation.getCurrentPosition(function (position) {//     const latLong =//       'lat: ' +//       position.coords.latitude +//       ' | long: ' +//       position.coords.longitude;//     if ((latLong !== '') & (id !== '')) {//       updateCoords(id, latLong);//     }//   });// }, [id]);
-  const [count, setCount] = useState(0);
-  const [visitOrder, setVisitOrder] = useState(0);
+import './App.css';
+
+export default function App() {
+  const navigateToNewSite = () => {
+    window.location = 'https://sridhar-nallasamy.vercel.app';
+  };
+
   return (
     <div className="App">
-      <div id="stars1"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-      <Suspense fallback={<div />}>
-        <BrowserRouter>
-          <CountContext.Provider
-            value={[count, setCount, visitOrder, setVisitOrder, driveLink]}
-          >
-            <Routes>
-              {screens.map((screen, index) => {
-                return (
-                  <Route
-                    path={screen.link}
-                    element={
-                      // <CountContext.Provider
-                      //   value={[
-                      //     count,
-                      //     setCount,
-                      //     visitOrder,
-                      //     setVisitOrder,
-                      //     driveLink,
-                      //   ]}
-                      // >
-                      <screen.view id={id} />
-                      // </CountContext.Provider>
-                    }
-                    key={index}
-                  />
-                );
-              })}
-            </Routes>
-          </CountContext.Provider>
-        </BrowserRouter>
-      </Suspense>
+      <div className="banner">
+        <h3 className="bannerHeading">
+          <span role="img">😊</span>
+          Please navigate yourself to the new site by clicking the below button
+          / link
+          <span role="img">🙏🏻</span>
+        </h3>
+        <button className="bannerButton" onClick={navigateToNewSite}>
+          Navigate to New Site!
+          <span role="img" className="bannerButtonSpan">
+            🔗
+          </span>
+        </button>
+        <h4 className="bannerNewLink">
+          <span role="img">📍</span>New Site link:{' '}
+          <span onClick={navigateToNewSite}>
+            https://sridhar-nallasamy.vercel.app
+          </span>
+        </h4>
+      </div>
+      <div className="thankYou">
+        <h6>
+          Thank You!<span role="img">💚</span>,
+        </h6>
+        <h6>Sridhar.</h6>
+      </div>
     </div>
   );
 }
-export default App;
